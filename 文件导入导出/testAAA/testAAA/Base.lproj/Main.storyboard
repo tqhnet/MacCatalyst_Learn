@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ISO-Pz-MZc">
     <device id="mac" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,10 +9,26 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="GBp-4i-8AO">
+            <objects>
+                <navigationController id="ISO-Pz-MZc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iy6-xE-Lwf">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Mba-Vb-d0r" kind="relationship" relationship="rootViewController" id="sQb-Qu-KsS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PuJ-c9-uf5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1359" y="432"/>
+        </scene>
+        <!--文字转图片-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createImageVc" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,7 +37,6 @@
                                 <rect key="frame" x="369" y="548" width="62" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="U5q-1M-IkL"/>
-                                    <constraint firstAttribute="width" constant="62" id="q0j-Ff-tgB"/>
                                 </constraints>
                                 <state key="normal" title="测试按钮"/>
                                 <connections>
@@ -31,7 +46,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAv-W0-dsH">
                                 <rect key="frame" x="200" y="66" width="400" height="400"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="9pN-rH-MJN"/>
+                                    <constraint firstAttribute="width" constant="400" id="0tL-6m-zPR"/>
                                     <constraint firstAttribute="height" constant="400" id="uee-Jr-P07"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -48,18 +63,35 @@
                             <constraint firstItem="Od3-7R-baT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hHD-HD-OEh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="文字转图片" id="wb0-rv-YNW"/>
                     <connections>
                         <outlet property="label" destination="FAv-W0-dsH" id="6Lc-aB-NeE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="125" y="64"/>
+            <point key="canvasLocation" x="39" y="432"/>
+        </scene>
+        <!--Main Table View Controller-->
+        <scene sceneID="K93-lc-dQw">
+            <objects>
+                <viewController id="Mba-Vb-d0r" customClass="MainTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bKY-L7-8Jj">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="iZa-gq-Nko"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OIk-7h-9bS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="34q-ef-PUU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-633" y="432"/>
         </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -6,22 +6,25 @@
 //
 
 #import "ViewController.h"
-//#import <AppKit/AppKit.h>
+#import "WJSpiderManager.h"
+#import "UIImage+WJExt.h"
+#import "WJFileManager.h"
+#import "FileListController.h"
 
-@interface ViewController ()<UIDocumentPickerDelegate>
+@interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
-
 @property (nonatomic,copy) NSString *fileName;
 
 @end
 
 @implementation ViewController
 
+// ios修改图片尺寸的方法 https://www.jianshu.com/p/ba45f5539e4e
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.label.textAlignment = NSTextAlignmentCenter;
-    self.label.text = @"点击生成图片资源";
+    self.label.text = @"点击批量转换";
     self.label.font = [UIFont systemFontOfSize:20 weight:UIFontWeightRegular];
     self.fileName = @"test.png";
 }
@@ -36,16 +39,157 @@
 - (IBAction)buttonPressed:(UIButton *)sender {
    
     NSLog(@"%@",NSHomeDirectory());
-//    [self importFile];
-    [self exportFile:self.fileName];
+    
+//    NSString *path = [NSString stringWithFormat:@"%@/Documents/UE4/1.png",NSHomeDirectory()];
+//    NSString *outputpath = [NSString stringWithFormat:@"%@/Documents/Output/1.png",NSHomeDirectory()];
+//    NSData *data = [NSData dataWithContentsOfFile:path];
+//    UIImage *tmpImage = [UIImage getThumImgOfConextWithData:data withMaxPixelSize:800];
+//    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.label.bounds];
+//    imageView.image = tmpImage;
+//    [self.label addSubview:imageView];
+    
+//    NSString *dirPath = [NSString stringWithFormat:@"%@/Documents/UE4",NSHomeDirectory()];
+//    NSString *dirSCVPath = [NSString stringWithFormat:@"%@/Documents/CSV",NSHomeDirectory()];
+//    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/Output",NSHomeDirectory()];
+    
+//    NSArray *array = [WJFileManager getAllFileWithDirPath:dirPath];
+//    NSLog(@"%@",array);
+    
+//    YYCGImageCreateDecodedCopy(<#CGImageRef  _Nonnull imageRef#>, <#BOOL decodeForDisplay#>)
+//
+//    for (int i = 0; i<array.count; i++) {
+//        NSString *path = [NSString stringWithFormat:@"%@/%@",dirPath,array[i]];
+//        NSData *data = [NSData dataWithContentsOfFile:path];
+//        UIImage *tmpImage = [UIImage getThumImgOfConextWithData:data withMaxPixelSize:800];
+//        NSString *outputPath =  [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
+//        outputPath = [outputPath stringByReplacingOccurrencesOfString:@".jpg" withString:@".png"];
+//        BOOL result = [UIImageJPEGRepresentation(tmpImage, 0.8) writeToFile: outputPath atomically:YES];
+//        if (result) {
+//            NSLog(@"成功");
+//        }else {
+//            NSLog(@"失败名字=%@",array[i]);
+//        }
+//    }
+    
+    
+    
+    
+    
+//    NSArray *array = [self parseCSV:[NSString stringWithFormat:@"%@/%@",dirSCVPath,@"虚幻插件.csv"]];
+//
+//    for (int i = 0; i<array.count; i++) {
+//
+//        NSDictionary *dic = array[i];
+////        NSLog(@"%@",dic);
+//        NSString *name = dic[@"名称"];
+//        NSString *url = dic[@"URL"];
+//        NSString *outputPath =  [NSString stringWithFormat:@"%@/%@.jpg",dirOutputPath,name];
+//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
+//        UIImage *tmpImage = [UIImage imageWithData:data];
+////        UIImage *tmpImage = [UIImage getThumImgOfConextWithData:data withMaxPixelSize:800];
+//        BOOL result = [UIImageJPEGRepresentation(tmpImage, 0.8) writeToFile: outputPath atomically:YES];
+//        if (result) {
+//            NSLog(@"成功");
+//        }else {
+//            NSLog(@"失败名字=%@",array[i]);
+//        }
+//    }
+    [self createFile];
+    NSLog(@"完成");
 }
 
-- (void)importFile {
-    NSArray *types = @[]; // 可以选择的文件类型
-        UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:types inMode:UIDocumentPickerModeOpen];
-        documentPicker.delegate = self;
-        documentPicker.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:documentPicker animated:YES completion:nil];
+// 因为有特殊字符
+- (void)findAllReourceAndRname{
+    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/2021_9_15",NSHomeDirectory()];
+    NSArray *array = [WJFileManager getAllFileWithDirPath:dirOutputPath];
+    for (int i = 0; i<array.count; i++) {
+        //通过移动该文件对文件重命名
+//        NSString *documentsPath =[self getDocumentsPath];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
+        NSString *str = array[i];
+        if([str containsString:@":"]||[str containsString:@"："]){
+            NSString *moveToPath = [filePath stringByReplacingOccurrencesOfString:@":" withString:@" "];
+            moveToPath = [moveToPath stringByReplacingOccurrencesOfString:@"：" withString:@" "];
+            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
+            if (isSuccess) {
+                NSLog(@"成功");
+            }else{
+                NSLog(@"失败");
+            }
+        }
+        double index = i;
+        NSLog(@"进度%f,小标%d",index/array.count,i);
+    }
+    
+}
+
+- (void)changeMove{
+    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/2021_9_15",NSHomeDirectory()];
+    NSArray *array = [WJFileManager getAllFileWithDirPath:dirOutputPath];
+    NSInteger index = 0;
+    for (int i = 0; i<array.count; i++) {
+        //通过移动该文件对文件重命名
+//        NSString *documentsPath =[self getDocumentsPath];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
+//        NSString *str = array[i];
+        if(i % 100==0){
+            index ++;
+        }
+        NSString *pathdir = [NSString stringWithFormat:@"%@/%ld",dirOutputPath,index];
+        NSLog(@"%@",pathdir);
+        if([self createDir:pathdir]){
+            NSString *moveToPath = [NSString stringWithFormat:@"%@/%@",pathdir,array[i]];
+            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
+            if (isSuccess) {
+                NSLog(@"成功");
+            }else{
+                NSLog(@"失败");
+            }
+        }else {
+            NSLog(@"失败");
+        }
+        double index = i;
+        NSLog(@"进度%f,小标%d",index/array.count,i);
+    }
+}
+
+
+- (NSArray *)parseCSV:(NSString *)url{
+    NSMutableArray *array = [NSMutableArray array];
+    NSString *filepath = url;
+       FILE *fp = fopen([filepath UTF8String], "r");
+       if (fp) {
+           char buf[BUFSIZ];
+           fgets(buf, BUFSIZ, fp);
+           NSString *a = [[NSString alloc] initWithUTF8String:(const char *)buf];
+           NSString *aa = [a stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+           aa = [aa stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+          //获取的是表头的字段
+           NSArray *b = [aa componentsSeparatedByString:@","];
+           
+           while (!feof(fp)) {
+               char buff[BUFSIZ];
+               fgets(buff, BUFSIZ, fp);
+               //获取的是内容
+               NSString *s = [[NSString alloc] initWithUTF8String:(const char *)buff];
+               NSString *ss = [s stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+               ss = [ss stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+               NSArray *a = [ss componentsSeparatedByString:@","];
+               
+               NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+               for (int i = 0; i < b.count ; i ++) {
+                  //组成字典数组
+                   dic[b[i]] = a[i];
+               }
+               
+               [array addObject:dic];
+           }
+       }
+       
+       NSLog(@"%@",array);
+    return array;
 }
 
 - (void)createFile {
@@ -72,44 +216,6 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)exportFile:(NSString *)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    // 保存文件的名称
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
-    UIDocumentPickerViewController *vccc = [[UIDocumentPickerViewController alloc]initWithURL:[NSURL fileURLWithPath:filePath] inMode:UIDocumentPickerModeExportToService];
-    [self presentViewController:vccc animated:YES completion:nil];
-}
-
-#pragma mark - <UIDocumentPickerDelegate>
-
-- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls API_AVAILABLE(ios(11.0)){
-    NSURL *url = urls[0];
-    BOOL canAccessingResource = [url startAccessingSecurityScopedResource];
-    if(canAccessingResource) {
-        NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init];
-        NSError *error;
-        [fileCoordinator coordinateReadingItemAtURL:url options:0 error:&error byAccessor:^(NSURL *newURL) {
-            NSData *fileData = [NSData dataWithContentsOfURL:newURL];
-            NSArray *arr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentPath = [arr lastObject];
-            NSString *desFileName = [documentPath stringByAppendingPathComponent:self.fileName];
-            [fileData writeToFile:desFileName atomically:YES];
-            [self dismissViewControllerAnimated:YES completion:NULL];
-        }];
-        if (error) {
-            // error handing
-        }
-    } else {
-        // startAccessingSecurityScopedResource fail
-    }
-    [url stopAccessingSecurityScopedResource];
-    
-}
-
-- (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller {
-    NSLog(@"取消");
-}
-
 #pragma mark - others
 
 - (void)createImage:(UIView *)view {
@@ -129,7 +235,7 @@
 - (BOOL)saveFile:(NSString *)fileName image:(UIImage *)image{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
-    BOOL result = [UIImagePNGRepresentation(image) writeToFile: filePath atomically:YES];
+    BOOL result = [UIImageJPEGRepresentation(image, 0.8) writeToFile: filePath atomically:YES];
 
     if (result) {
         NSLog(@"保存成功");
@@ -141,16 +247,18 @@
 }
 
 /// 创建文件夹
--(BOOL)createDir:(NSString *)fileName{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString * path = [NSString stringWithFormat:@"%@/%@",documentsDirectory,fileName];
+-(BOOL)createDir:(NSString *)dirPath{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString * path = dirPath;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDir;
     if  (![fileManager fileExistsAtPath:path isDirectory:&isDir]) {//先判断目录是否存在，不存在才创建
-    BOOL res=[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-    return res;
-    } else return NO;
+        BOOL res=[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        return res;
+    } else {
+        return YES;
+    }
     
 }
 

@@ -1,0 +1,19 @@
+//
+//  WJSpiderManager.h
+//  testAAA
+//
+//  Created by xj_mac on 2021/9/14.
+//
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface WJSpiderManager : NSObject
+
+- (void)setCookie:(NSString *)cookie;
+- (void)requestUE4;
+
+@end
+
+NS_ASSUME_NONNULL_END

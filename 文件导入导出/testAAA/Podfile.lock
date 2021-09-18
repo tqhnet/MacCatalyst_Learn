@@ -1,0 +1,60 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
+  - MJRefresh (3.7.2)
+  - SVProgressHUD (2.0.4)
+  - TFHpple (2.0.0)
+  - WJTKit (0.1.0):
+    - AFNetworking
+    - Masonry
+    - MJRefresh
+    - SVProgressHUD (~> 2.0.4)
+    - YYCache
+    - YYModel
+  - YYCache (1.0.4)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking (~> 4.0)
+  - TFHpple
+  - WJTKit
+  - YYModel
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - Masonry
+    - MJRefresh
+    - SVProgressHUD
+    - TFHpple
+    - WJTKit
+    - YYCache
+    - YYModel
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
+  TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
+  WJTKit: 434b6ee961dbc6bdffd722556a094b5817074b01
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: 8fbe87d1a8fbff9e796e4c2ff74a1d96f189918f
+
+COCOAPODS: 1.10.1
