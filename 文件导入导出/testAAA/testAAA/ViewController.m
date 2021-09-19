@@ -71,126 +71,68 @@
 //        }
 //    }
     
-    
-    
-    
-    
-//    NSArray *array = [self parseCSV:[NSString stringWithFormat:@"%@/%@",dirSCVPath,@"虚幻插件.csv"]];
-//
-//    for (int i = 0; i<array.count; i++) {
-//
-//        NSDictionary *dic = array[i];
-////        NSLog(@"%@",dic);
-//        NSString *name = dic[@"名称"];
-//        NSString *url = dic[@"URL"];
-//        NSString *outputPath =  [NSString stringWithFormat:@"%@/%@.jpg",dirOutputPath,name];
-//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
-//        UIImage *tmpImage = [UIImage imageWithData:data];
-////        UIImage *tmpImage = [UIImage getThumImgOfConextWithData:data withMaxPixelSize:800];
-//        BOOL result = [UIImageJPEGRepresentation(tmpImage, 0.8) writeToFile: outputPath atomically:YES];
-//        if (result) {
-//            NSLog(@"成功");
-//        }else {
-//            NSLog(@"失败名字=%@",array[i]);
-//        }
-//    }
     [self createFile];
     NSLog(@"完成");
 }
 
-// 因为有特殊字符
-- (void)findAllReourceAndRname{
-    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/2021_9_15",NSHomeDirectory()];
-    NSArray *array = [WJFileManager getAllFileWithDirPath:dirOutputPath];
-    for (int i = 0; i<array.count; i++) {
-        //通过移动该文件对文件重命名
-//        NSString *documentsPath =[self getDocumentsPath];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
-        NSString *str = array[i];
-        if([str containsString:@":"]||[str containsString:@"："]){
-            NSString *moveToPath = [filePath stringByReplacingOccurrencesOfString:@":" withString:@" "];
-            moveToPath = [moveToPath stringByReplacingOccurrencesOfString:@"：" withString:@" "];
-            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
-            if (isSuccess) {
-                NSLog(@"成功");
-            }else{
-                NSLog(@"失败");
-            }
-        }
-        double index = i;
-        NSLog(@"进度%f,小标%d",index/array.count,i);
-    }
-    
-}
-
-- (void)changeMove{
-    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/2021_9_15",NSHomeDirectory()];
-    NSArray *array = [WJFileManager getAllFileWithDirPath:dirOutputPath];
-    NSInteger index = 0;
-    for (int i = 0; i<array.count; i++) {
-        //通过移动该文件对文件重命名
-//        NSString *documentsPath =[self getDocumentsPath];
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
+//// 因为有特殊字符
+//- (void)findAllReourceAndRname{
+//    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/2021_9_15",NSHomeDirectory()];
+//    NSArray *array = [WJFileManager getAllFileWithDirPath:dirOutputPath];
+//    for (int i = 0; i<array.count; i++) {
+//        //通过移动该文件对文件重命名
+////        NSString *documentsPath =[self getDocumentsPath];
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
 //        NSString *str = array[i];
-        if(i % 100==0){
-            index ++;
-        }
-        NSString *pathdir = [NSString stringWithFormat:@"%@/%ld",dirOutputPath,index];
-        NSLog(@"%@",pathdir);
-        if([self createDir:pathdir]){
-            NSString *moveToPath = [NSString stringWithFormat:@"%@/%@",pathdir,array[i]];
-            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
-            if (isSuccess) {
-                NSLog(@"成功");
-            }else{
-                NSLog(@"失败");
-            }
-        }else {
-            NSLog(@"失败");
-        }
-        double index = i;
-        NSLog(@"进度%f,小标%d",index/array.count,i);
-    }
-}
+//        if([str containsString:@":"]||[str containsString:@"："]){
+//            NSString *moveToPath = [filePath stringByReplacingOccurrencesOfString:@":" withString:@" "];
+//            moveToPath = [moveToPath stringByReplacingOccurrencesOfString:@"：" withString:@" "];
+//            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
+//            if (isSuccess) {
+//                NSLog(@"成功");
+//            }else{
+//                NSLog(@"失败");
+//            }
+//        }
+//        double index = i;
+//        NSLog(@"进度%f,小标%d",index/array.count,i);
+//    }
+//    
+//}
+
+//- (void)changeMove{
+//    NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents/2021_9_15",NSHomeDirectory()];
+//    NSArray *array = [WJFileManager getAllFileWithDirPath:dirOutputPath];
+//    NSInteger index = 0;
+//    for (int i = 0; i<array.count; i++) {
+//        //通过移动该文件对文件重命名
+////        NSString *documentsPath =[self getDocumentsPath];
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirOutputPath,array[i]];
+////        NSString *str = array[i];
+//        if(i % 100==0){
+//            index ++;
+//        }
+//        NSString *pathdir = [NSString stringWithFormat:@"%@/%ld",dirOutputPath,index];
+//        NSLog(@"%@",pathdir);
+//        if([self createDir:pathdir]){
+//            NSString *moveToPath = [NSString stringWithFormat:@"%@/%@",pathdir,array[i]];
+//            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
+//            if (isSuccess) {
+//                NSLog(@"成功");
+//            }else{
+//                NSLog(@"失败");
+//            }
+//        }else {
+//            NSLog(@"失败");
+//        }
+//        double index = i;
+//        NSLog(@"进度%f,小标%d",index/array.count,i);
+//    }
+//}
 
 
-- (NSArray *)parseCSV:(NSString *)url{
-    NSMutableArray *array = [NSMutableArray array];
-    NSString *filepath = url;
-       FILE *fp = fopen([filepath UTF8String], "r");
-       if (fp) {
-           char buf[BUFSIZ];
-           fgets(buf, BUFSIZ, fp);
-           NSString *a = [[NSString alloc] initWithUTF8String:(const char *)buf];
-           NSString *aa = [a stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-           aa = [aa stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-          //获取的是表头的字段
-           NSArray *b = [aa componentsSeparatedByString:@","];
-           
-           while (!feof(fp)) {
-               char buff[BUFSIZ];
-               fgets(buff, BUFSIZ, fp);
-               //获取的是内容
-               NSString *s = [[NSString alloc] initWithUTF8String:(const char *)buff];
-               NSString *ss = [s stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-               ss = [ss stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-               NSArray *a = [ss componentsSeparatedByString:@","];
-               
-               NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-               for (int i = 0; i < b.count ; i ++) {
-                  //组成字典数组
-                   dic[b[i]] = a[i];
-               }
-               
-               [array addObject:dic];
-           }
-       }
-       
-       NSLog(@"%@",array);
-    return array;
-}
 
 - (void)createFile {
     [self.label.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -246,21 +188,21 @@
     }
 }
 
-/// 创建文件夹
--(BOOL)createDir:(NSString *)dirPath{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString * path = dirPath;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL isDir;
-    if  (![fileManager fileExistsAtPath:path isDirectory:&isDir]) {//先判断目录是否存在，不存在才创建
-        BOOL res=[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
-        return res;
-    } else {
-        return YES;
-    }
-    
-}
+///// 创建文件夹
+//-(BOOL)createDir:(NSString *)dirPath{
+////    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+////    NSString *documentsDirectory = [paths objectAtIndex:0];
+//    NSString * path = dirPath;
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    BOOL isDir;
+//    if  (![fileManager fileExistsAtPath:path isDirectory:&isDir]) {//先判断目录是否存在，不存在才创建
+//        BOOL res=[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+//        return res;
+//    } else {
+//        return YES;
+//    }
+//    
+//}
 
 
 @end

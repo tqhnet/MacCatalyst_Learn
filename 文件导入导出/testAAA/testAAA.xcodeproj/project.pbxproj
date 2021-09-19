@@ -22,6 +22,8 @@
 		48788AC126F5B92F006FD072 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48788AC026F5B92F006FD072 /* FileListCell.m */; };
 		48788AC526F5B957006FD072 /* FileListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48788AC426F5B957006FD072 /* FileListModel.m */; };
 		48788ACB26F5C193006FD072 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48788ACA26F5C193006FD072 /* MainTableViewController.m */; };
+		48B660DE26F718CB002A8537 /* DownImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B660DC26F718CA002A8537 /* DownImageController.m */; };
+		48B660DF26F718CB002A8537 /* DownImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B660DD26F718CA002A8537 /* DownImageController.xib */; };
 		84FF85E498A7F3E0851A6153 /* libPods-testAAA.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6499DA29032B83F5042D6C78 /* libPods-testAAA.a */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,9 @@
 		48788AC426F5B957006FD072 /* FileListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileListModel.m; sourceTree = "<group>"; };
 		48788AC926F5C193006FD072 /* MainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		48788ACA26F5C193006FD072 /* MainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
+		48B660DB26F718CA002A8537 /* DownImageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownImageController.h; sourceTree = "<group>"; };
+		48B660DC26F718CA002A8537 /* DownImageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownImageController.m; sourceTree = "<group>"; };
+		48B660DD26F718CA002A8537 /* DownImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownImageController.xib; sourceTree = "<group>"; };
 		638849E536C7CC3BA3EC8E35 /* Pods-testAAA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testAAA.debug.xcconfig"; path = "Target Support Files/Pods-testAAA/Pods-testAAA.debug.xcconfig"; sourceTree = "<group>"; };
 		6499DA29032B83F5042D6C78 /* libPods-testAAA.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-testAAA.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD28D302360E349526633F5 /* Pods-testAAA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-testAAA.release.xcconfig"; path = "Target Support Files/Pods-testAAA/Pods-testAAA.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 				484A988F26F079DD00AA79D7 /* UIImage+WJExt.m */,
 				48788AC926F5C193006FD072 /* MainTableViewController.h */,
 				48788ACA26F5C193006FD072 /* MainTableViewController.m */,
+				48B660DA26F715FF002A8537 /* DownImage */,
 				482AA47126EB3F65007BEC88 /* Main.storyboard */,
 				482AA47426EB3F68007BEC88 /* Assets.xcassets */,
 				482AA47626EB3F68007BEC88 /* LaunchScreen.storyboard */,
@@ -137,6 +143,16 @@
 				48788ABB26F593DD006FD072 /* FileListController.xib */,
 			);
 			path = FileList;
+			sourceTree = "<group>";
+		};
+		48B660DA26F715FF002A8537 /* DownImage */ = {
+			isa = PBXGroup;
+			children = (
+				48B660DB26F718CA002A8537 /* DownImageController.h */,
+				48B660DC26F718CA002A8537 /* DownImageController.m */,
+				48B660DD26F718CA002A8537 /* DownImageController.xib */,
+			);
+			path = DownImage;
 			sourceTree = "<group>";
 		};
 		BE17F665FD721ACB87E26854 /* Pods */ = {
@@ -209,6 +225,7 @@
 				482AA47826EB3F68007BEC88 /* LaunchScreen.storyboard in Resources */,
 				482AA47526EB3F68007BEC88 /* Assets.xcassets in Resources */,
 				482AA47326EB3F65007BEC88 /* Main.storyboard in Resources */,
+				48B660DF26F718CB002A8537 /* DownImageController.xib in Resources */,
 				48788ABD26F593DD006FD072 /* FileListController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +286,7 @@
 				48788AC526F5B957006FD072 /* FileListModel.m in Sources */,
 				484A989026F079DD00AA79D7 /* UIImage+WJExt.m in Sources */,
 				482AA46A26EB3F65007BEC88 /* AppDelegate.m in Sources */,
+				48B660DE26F718CB002A8537 /* DownImageController.m in Sources */,
 				48788AC126F5B92F006FD072 /* FileListCell.m in Sources */,
 				482AA47B26EB3F68007BEC88 /* main.m in Sources */,
 				482AA46D26EB3F65007BEC88 /* SceneDelegate.m in Sources */,

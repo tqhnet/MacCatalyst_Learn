@@ -7,7 +7,8 @@
 
 #import "MainTableViewController.h"
 #import "FileListController.h"
-//<UIDocumentPickerDelegate>
+#import "DownImageController.h"
+
 @interface MainTableViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentPickerDelegate>
 
 @property (nonatomic,strong)NSMutableArray *dataArray;
@@ -27,7 +28,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片"]];
+    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片",@"批量下载图片"]];
     [self.view addSubview:self.tableView];
 }
 
@@ -85,9 +86,13 @@
         [self.navigationController pushViewController:detail animated:YES];
     }else if ([string isEqualToString:@"文字转图片"]){
         [self gotoCreatImage];
+    }else if ([string isEqualToString:@"批量下载图片"]){
+        [self gotoDownImage];
     }
 }
 
+
+#pragma mark - push vc
 
 - (void)gotoCreatImage{
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -102,6 +107,11 @@
         documentPicker.delegate = self;
         documentPicker.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:documentPicker animated:YES completion:nil];
+}
+
+- (void)gotoDownImage{
+    DownImageController *vc = [[DownImageController alloc]initWithNibName:@"DownImageController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
