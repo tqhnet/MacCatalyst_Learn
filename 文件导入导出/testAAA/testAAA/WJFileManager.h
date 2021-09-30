@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WJFileManager : NSObject
 
+/// 获取沙盒路径
++ (NSString *)getDocumentsPath;
 + (NSArray *)getAllFileWithDirPath:(NSString *)dirPath;
 + (NSArray *)getCurrentDirectoryFileWithDirPath:(NSString *)dirPath;
 + (BOOL)isDirectory:(NSString *)filePath;

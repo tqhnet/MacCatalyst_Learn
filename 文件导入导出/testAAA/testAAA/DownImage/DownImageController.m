@@ -7,12 +7,14 @@
 
 #import "DownImageController.h"
 #import "WJFileManager.h"
+#import <WJKit.h>
 
 @interface DownImageController ()
 @property (weak, nonatomic) IBOutlet UITextField *csvPathTextField;
 @property (weak, nonatomic) IBOutlet UITextField *outPutTextField;
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
+@property (nonatomic,copy) NSString *suffix;
 
 @end
 
@@ -20,32 +22,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.suffix = @".csv";
 }
 
+/// 导出分组
+- (IBAction)exportGroupButtonPressed:(UIButton *)sender {
+    
+//    [self changeMove:@"" outPutDirPath:@""];
+}
+
+/// 下载测试模板
+- (IBAction)downButtonPressed:(UIButton *)sender {
+   NSString *str = [self writJson:@[@{@"title":@"头像",@"imageUrl":@"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0119d95c482e8fa801213f26847b0f.jpg%402o.jpg&refer=http%3A%2F%2Fimg.zcool.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1635559515&t=66b25ac82899e9b3497ffb28a3a5c363"}]];
+    if (str) {
+        [WJFileManager exportFileFromPath:str controller:self];
+    }else {
+        self.progressLabel.text = @"数据不正确";
+    }
+}
+
+/// 开始执行下载图片
 - (IBAction)doneButtonPressed:(UIButton *)sender {
     
+    NSString *suffix = self.suffix;
     self.progressLabel.textColor = [UIColor blackColor];
     NSString *csvPath = self.csvPathTextField.text;
     NSString *outPutPath = self.outPutTextField.text;
-    if (![csvPath containsString:@".csv"]) {
-        self.progressLabel.text = @"不是从CSV文件";
+    if (![csvPath containsString:suffix]) {
+        self.progressLabel.text = [NSString stringWithFormat:@"不是%@文件",suffix];
         self.progressLabel.textColor = [UIColor redColor];
         return;
     }
     
-    if (![WJFileManager isDirectory:outPutPath]) {
-        self.progressLabel.text = @"输出目录不正确";
-        self.progressLabel.textColor = [UIColor redColor];
-        return;
+    if(outPutPath.length != 0){
+        if (![WJFileManager isDirectory:outPutPath]) {
+            self.progressLabel.text = @"输出目录不正确";
+            self.progressLabel.textColor = [UIColor redColor];
+            return;
+        }
+    }else {
+        outPutPath = [csvPath stringByReplacingOccurrencesOfString:suffix withString:@""];
+        if (![WJFileManager isDirectory:outPutPath]) {
+            [self createDir:outPutPath];
+        }
     }
+    
+    
     NSArray *array = [self parseCSV:csvPath];
-
     double index = 0;
-    for (int i = 0; i<array.count; i++) {
+    for (int i = 0; i< array.count; i++) {
 
         NSDictionary *dic = array[i];
         NSString *name = dic[@"title"];
-        NSString *url = dic[@"url"];
+        NSString *url = dic[@"imageUrl"];
+        if([name containsString:@":"]||[name containsString:@"："]){// 过滤字符串
+            name = [name stringByReplacingOccurrencesOfString:@":" withString:@" "];
+        }
         NSString *outputPath =  [NSString stringWithFormat:@"%@/%@.jpg",outPutPath,name];
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];
         UIImage *tmpImage = [UIImage imageWithData:data];
@@ -58,6 +90,7 @@
         index ++;
         CGFloat progress = index/array.count;
         NSString *str = [NSString stringWithFormat:@"下载进度%.2f",progress];
+        NSLog(@"%@",str);
         self.progressLabel.text = str;
     }
     
@@ -69,9 +102,6 @@
     pasteboard.string = filePath;
     self.progressLabel.text = @"提示：沙盒路径已经复制到粘贴板,使用前往文件夹打开";
 }
-
-
-
 
 #pragma mark - others
 
@@ -101,32 +131,64 @@
 }
 
 /// 切分文件100个一组解决淘宝文件上传的时候不能太多的数量
-- (void)changeMove:(NSString *)dirPath outPutDirPath:(NSString *)outPutDirPath {
-    NSArray *array = [WJFileManager getAllFileWithDirPath:dirPath];
-    NSInteger index = 0;
-    for (int i = 0; i<array.count; i++) {
-        //通过移动该文件对文件重命名
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,array[i]];
-        if(i % 100==0){
-            index ++;
-        }
-        NSString *pathdir = [NSString stringWithFormat:@"%@/%ld",outPutDirPath,index];
-        if([self createDir:pathdir]){
-            NSString *moveToPath = [NSString stringWithFormat:@"%@/%@",pathdir,array[i]];
-            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
-            if (isSuccess) {
-                NSLog(@"成功");
-            }else{
-                NSLog(@"失败");
-            }
-        }else {
-            NSLog(@"失败");
-        }
-        double index = i;
-        NSLog(@"进度%f,小标%d",index/array.count,i);
-    }
+//- (void)changeMove:(NSString *)dirPath outPutDirPath:(NSString *)outPutDirPath {
+//    NSArray *array = [WJFileManager getAllFileWithDirPath:dirPath];
+//    NSInteger index = 0;
+//    for (int i = 0; i<array.count; i++) {
+//        //通过移动该文件对文件重命名
+//        NSFileManager *fileManager = [NSFileManager defaultManager];
+//        NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,array[i]];
+//        if(i % 100==0){
+//            index ++;
+//        }
+//        NSString *pathdir = [NSString stringWithFormat:@"%@/%ld",outPutDirPath,index];
+//        if([self createDir:pathdir]){
+//            NSString *moveToPath = [NSString stringWithFormat:@"%@/%@",pathdir,array[i]];
+//            BOOL isSuccess = [fileManager moveItemAtPath:filePath toPath:moveToPath error:nil];
+//            if (isSuccess) {
+//                NSLog(@"成功");
+//            }else{
+//                NSLog(@"失败");
+//            }
+//        }else {
+//            NSLog(@"失败");
+//        }
+//        double index = i;
+//        NSLog(@"进度%f,小标%d",index/array.count,i);
+//    }
+//}
+
+
+- (NSArray *)parseJson:(NSString *)url {
+    // 将文件数据化
+//    NSString * path = [NSString stringWithFormat:url];
+    NSString *path = [NSString stringWithFormat:@"%@",NSHomeDirectory()];
+    NSLog(@"path = %@",path);
+    NSLog(@"file = %@",url);
+    NSData *data = [[NSData alloc] initWithContentsOfURL:[NSURL fileURLWithPath:url]];
+    NSLog(@"data = %@",data);
+    NSString *result =[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@" --- %@",result);
+    NSLog(@"22222%@",[result yy_modelToJSONObject]);
+    
+    // 对数据进行JSON格式化并返回字典形式
+    return [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+
 }
+
+- (NSString *)writJson:(NSArray*)json_dic{
+            NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/myJson.json"];
+    NSData *json_data = [NSJSONSerialization dataWithJSONObject:json_dic options:NSJSONWritingPrettyPrinted error:nil];
+    BOOL a =   [json_data writeToFile:filePath atomically:YES];
+    if (a) {
+        NSLog(@"路径：%@",filePath);
+    }else {
+        NSLog(@"存储失败");
+    }
+    
+    return filePath;
+}
+
 
 - (NSArray *)parseCSV:(NSString *)url{
     NSMutableArray *array = [NSMutableArray array];

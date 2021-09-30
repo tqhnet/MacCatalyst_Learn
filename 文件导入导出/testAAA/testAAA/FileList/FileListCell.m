@@ -36,8 +36,15 @@
 
 - (void)setModel:(FileListModel *)model {
     _model = model;
-    self.titleLabel.text = model.title;
-    self.exportButton.hidden = model.isDirectory;
+    if(model.isDirectory){
+        self.titleLabel.text = [NSString stringWithFormat:@"[文件夹] %@",model.title];
+    }else {
+        self.titleLabel.text = model.title;
+    }
+    
+//    self.exportButton.hidden = model.isDirectory;
+   
+    
 }
 
 
@@ -57,8 +64,8 @@
 - (UIButton *)exportButton {
     if (!_exportButton) {
         _exportButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_exportButton setTitle:@"导出" forState:UIControlStateNormal];
-        _exportButton.hidden = YES;
+        [_exportButton setTitle:@"操作" forState:UIControlStateNormal];
+//        _exportButton.hidden = YES;
         [_exportButton addTarget:self action:@selector(exportButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     }
     

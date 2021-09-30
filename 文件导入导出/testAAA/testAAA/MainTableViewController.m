@@ -8,6 +8,8 @@
 #import "MainTableViewController.h"
 #import "FileListController.h"
 #import "DownImageController.h"
+#import "FileGroupController.h"
+
 
 @interface MainTableViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentPickerDelegate>
 
@@ -28,7 +30,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片",@"批量下载图片"]];
+    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片",@"批量下载图片",@"将文件分组"]];
     [self.view addSubview:self.tableView];
 }
 
@@ -88,6 +90,9 @@
         [self gotoCreatImage];
     }else if ([string isEqualToString:@"批量下载图片"]){
         [self gotoDownImage];
+    }else if ([string isEqualToString:@"将文件分组"]){
+        FileGroupController *group = [[FileGroupController alloc]init];
+        [self.navigationController pushViewController:group animated:YES];
     }
 }
 

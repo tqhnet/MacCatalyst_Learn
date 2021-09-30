@@ -9,6 +9,10 @@
 
 @implementation WJFileManager
 
++ (NSString *)getDocumentsPath {
+    return [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
+}
+
 + (void)exportFileFromPath:(NSString *)filePath controller:(UIViewController *)controller {
 
     UIDocumentPickerViewController *vccc = [[UIDocumentPickerViewController alloc]initWithURL:[NSURL fileURLWithPath:filePath] inMode:UIDocumentPickerModeExportToService];

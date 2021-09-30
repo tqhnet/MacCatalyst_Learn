@@ -19,6 +19,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"退出选择" style:UIBarButtonItemStylePlain target:self action:@selector(rightItemButtonPressed)];
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
     NSLog(@"path = %@",self.path);
     NSArray *array = [WJFileManager getCurrentDirectoryFileWithDirPath:self.path];
 
@@ -50,6 +55,20 @@
     self.title = [self.path stringByReplacingOccurrencesOfString:NSHomeDirectory() withString:@""];
 }
 
+- (void)rightItemButtonPressed {
+    NSArray *array = self.navigationController.viewControllers;
+    NSInteger index = 0;
+    for (int i = 0 ; i <array.count; i++) {
+        if ([array[i] isKindOfClass:[FileListController class]]) {
+            index = i;
+            break;
+        }
+    }
+    if (index != 0) {
+        [self.navigationController popToViewController:array[index-1] animated:YES];
+    }
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     self.tableView.frame = self.view.bounds;
@@ -63,7 +82,7 @@
     FileListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
     cell.model = model;
     [cell setExportBlock:^{
-        [WJFileManager exportFileFromPath:model.path controller:self];
+        [self showMoreAlert:model];
     }];
     return cell;
 }
@@ -80,6 +99,26 @@
         detail.path = path;
         [self.navigationController pushViewController:detail animated:YES];
     }
+}
+
+/// 显示弹窗
+- (void)showMoreAlert:(FileListModel *)model{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"选择对应的操作" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"复制路径" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+        pasteboard.string = model.path;
+        [self rightItemButtonPressed];
+    }];
+    [alert addAction:action];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"导出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [WJFileManager exportFileFromPath:model.path controller:self];
+    }];
+    [alert addAction:action1];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+  
+    }];
+    [alert addAction:action2];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - 懒加载
