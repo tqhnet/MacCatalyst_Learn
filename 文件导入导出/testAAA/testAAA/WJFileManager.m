@@ -7,7 +7,35 @@
 
 #import "WJFileManager.h"
 
+@interface WJFileManager()<UIDocumentPickerDelegate>
+
+@property (nonatomic,strong) NSString *filePath;
+@property (nonatomic,copy) dispatch_block_t importFinishBlock;
+@end
+
 @implementation WJFileManager
+
+///// 创建文件夹
++ (NSString *)createDir:(NSString *)dirName isDocuments:(BOOL)isDocuments {
+    NSString * path = dirName;
+    if (isDocuments) {
+        path = [NSString stringWithFormat:@"%@/%@",[self getDocumentsPath],dirName];
+    }
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDir;
+    if  (![fileManager fileExistsAtPath:path isDirectory:&isDir]) {//先判断目录是否存在，不存在才创建
+        BOOL res=[fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        if (res) {
+            return path;
+        }else {
+            return nil;
+        }
+    } else {
+        return path;
+    }
+    return path;
+}
 
 + (NSString *)getDocumentsPath {
     return [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
@@ -36,20 +64,19 @@
   return isDirectory;
 }
 
-
-- (void)createDir:(NSString *)dirName {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    //test文件夹
-    documentsDir = [documentsDir stringByAppendingPathComponent:dirName];
-    //是否是文件夹
-    BOOL isDir;
-    BOOL isExit = [fileManager fileExistsAtPath:documentsDir isDirectory:&isDir];
-    //文件夹是否存在
-    if (!isExit || !isDir) {
-        [fileManager createDirectoryAtPath:documentsDir withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-}
+//+ (void)createDir:(NSString *)dirName {
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    NSString *documentsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    //test文件夹
+//    documentsDir = [documentsDir stringByAppendingPathComponent:dirName];
+//    //是否是文件夹
+//    BOOL isDir;
+//    BOOL isExit = [fileManager fileExistsAtPath:documentsDir isDirectory:&isDir];
+//    //文件夹是否存在
+//    if (!isExit || !isDir) {
+//        [fileManager createDirectoryAtPath:documentsDir withIntermediateDirectories:YES attributes:nil error:nil];
+//    }
+//}
 
 - (void)deleteDir:(NSString *)dirName {
     //删除Wtdb文件夹
@@ -135,5 +162,61 @@
 //    //*/
 //}
 
++ (instancetype)shareManager {
+    static WJFileManager *manager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [[WJFileManager alloc]init];
+    });
+    return manager;
+}
+
+- (void)importFileWithController:(UIViewController *)vc filePath:(NSString *)filePath types:(NSArray *)types finishBlock:(dispatch_block_t)finishBlock{
+    
+    self.importFinishBlock = [finishBlock copy];
+    self.filePath = filePath;
+//    NSArray *types = @[]; // 可以选择的文件类型
+    UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:types inMode:UIDocumentPickerModeOpen];
+    documentPicker.delegate = self;
+    documentPicker.modalPresentationStyle = UIModalPresentationFullScreen;
+    [vc presentViewController:documentPicker animated:YES completion:nil];
+}
+
+#pragma mark - <UIDocumentPickerDelegate>
+
+#pragma mark - <UIDocumentPickerDelegate>
+
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray <NSURL *>*)urls API_AVAILABLE(ios(11.0)){
+    NSURL *url = urls[0];
+    BOOL canAccessingResource = [url startAccessingSecurityScopedResource];
+    if(canAccessingResource) {
+        NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init];
+        NSError *error;
+        [fileCoordinator coordinateReadingItemAtURL:url options:0 error:&error byAccessor:^(NSURL *newURL) {
+            NSData *fileData = [NSData dataWithContentsOfURL:newURL];
+//            NSArray *arr = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//            NSString *documentPath = [arr lastObject];
+//            NSString *desFileName = [documentPath stringByAppendingPathComponent:self.fileName];
+//            NSLog(@"导入的文件路径%@",desFileName);
+            [fileData writeToFile:self.filePath atomically:YES];
+            [controller dismissViewControllerAnimated:YES completion:^{
+                if (self.importFinishBlock) {
+                    self.importFinishBlock();
+                }
+            }];
+        }];
+        if (error) {
+            // error handing
+        }
+    } else {
+        // startAccessingSecurityScopedResource fail
+    }
+    [url stopAccessingSecurityScopedResource];
+    
+}
+
+- (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller {
+    NSLog(@"取消");
+}
 
 @end

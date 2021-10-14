@@ -9,8 +9,6 @@
 
 @interface WJExtImageFileCell()
 
-
-
 @end
 
 @implementation WJExtImageFileCell
@@ -22,6 +20,11 @@
         [self addSubview:self.imageView];
     }
     return self;
+}
+
+- (void)setModel:(WJCanvasItemModel *)model {
+    _model = model;
+    _imageView.image = [UIImage imageWithContentsOfFile:model.filePath];
 }
 
 - (void)layoutSubviews {

@@ -6,10 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WJCanvasItemView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WJEditImageInfoController : UIViewController
+
+/// 选中的视图
+- (void)loadCanvasIemView:(WJCanvasItemView *)view;
 
 @end
 

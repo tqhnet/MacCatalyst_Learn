@@ -6,13 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WJCanvasItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol WJExtImageFileControllerDelegate <NSObject>
 
-
+@optional
 - (void)WJExtImageFileControllerDidImage:(UIImage *)image;
+- (void)wjExtImageFileControllerDidModel:(WJCanvasItemModel *)model;
 
 @end
 

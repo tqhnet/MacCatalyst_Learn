@@ -10,7 +10,7 @@
 #import "DownImageController.h"
 #import "FileGroupController.h"
 #import "WebParseController.h"
-#import "EditImageController.h"
+
 
 
 @interface MainTableViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentPickerDelegate>
@@ -98,8 +98,7 @@
     }else if ([string isEqualToString:@"网页解析"]){
         [self gotoWebParse];
     }else if ([string isEqualToString:@"图片编辑"]){
-        EditImageController *vc = [[EditImageController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+       
     }
 }
 

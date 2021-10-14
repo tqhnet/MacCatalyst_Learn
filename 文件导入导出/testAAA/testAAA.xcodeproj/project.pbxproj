@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		480ACE62271809DB00438021 /* WJCanvasItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 480ACE61271809DB00438021 /* WJCanvasItemModel.m */; };
+		480ACE662718145C00438021 /* 123.png in Resources */ = {isa = PBXBuildFile; fileRef = 480ACE652718145B00438021 /* 123.png */; };
 		482AA46A26EB3F65007BEC88 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 482AA46926EB3F65007BEC88 /* AppDelegate.m */; };
 		482AA46D26EB3F65007BEC88 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 482AA46C26EB3F65007BEC88 /* SceneDelegate.m */; };
 		482AA47026EB3F65007BEC88 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 482AA46F26EB3F65007BEC88 /* ViewController.m */; };
@@ -35,8 +37,8 @@
 		4899FC1B2705AF61006F7F2E /* WebParseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4899FC192705AF61006F7F2E /* WebParseController.xib */; };
 		48B660DE26F718CB002A8537 /* DownImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B660DC26F718CA002A8537 /* DownImageController.m */; };
 		48B660DF26F718CB002A8537 /* DownImageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 48B660DD26F718CA002A8537 /* DownImageController.xib */; };
-		48E1C71C27153EB700C24E0C /* EditImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E1C71A27153EB700C24E0C /* EditImageView.m */; };
-		48E1C72027153F2900C24E0C /* EditImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E1C71F27153F2900C24E0C /* EditImageController.m */; };
+		48E1C71C27153EB700C24E0C /* WJCanvasItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E1C71A27153EB700C24E0C /* WJCanvasItemView.m */; };
+		48E1C72027153F2900C24E0C /* WJCanvasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E1C71F27153F2900C24E0C /* WJCanvasController.m */; };
 		48E1C72A27153FEA00C24E0C /* Enlarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 48E1C72227153FEA00C24E0C /* Enlarge.png */; };
 		48E1C72B27153FEA00C24E0C /* Enlarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48E1C72327153FEA00C24E0C /* Enlarge@2x.png */; };
 		48E1C72C27153FEA00C24E0C /* Close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 48E1C72427153FEA00C24E0C /* Close@2x.png */; };
@@ -49,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		480ACE60271809DB00438021 /* WJCanvasItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJCanvasItemModel.h; sourceTree = "<group>"; };
+		480ACE61271809DB00438021 /* WJCanvasItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJCanvasItemModel.m; sourceTree = "<group>"; };
+		480ACE652718145B00438021 /* 123.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 123.png; sourceTree = "<group>"; };
 		482AA46526EB3F65007BEC88 /* testAAA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testAAA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		482AA46826EB3F65007BEC88 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		482AA46926EB3F65007BEC88 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,10 +103,10 @@
 		48B660DB26F718CA002A8537 /* DownImageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownImageController.h; sourceTree = "<group>"; };
 		48B660DC26F718CA002A8537 /* DownImageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownImageController.m; sourceTree = "<group>"; };
 		48B660DD26F718CA002A8537 /* DownImageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownImageController.xib; sourceTree = "<group>"; };
-		48E1C71A27153EB700C24E0C /* EditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditImageView.m; sourceTree = "<group>"; };
-		48E1C71B27153EB700C24E0C /* EditImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditImageView.h; sourceTree = "<group>"; };
-		48E1C71E27153F2900C24E0C /* EditImageController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditImageController.h; sourceTree = "<group>"; };
-		48E1C71F27153F2900C24E0C /* EditImageController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditImageController.m; sourceTree = "<group>"; };
+		48E1C71A27153EB700C24E0C /* WJCanvasItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJCanvasItemView.m; sourceTree = "<group>"; };
+		48E1C71B27153EB700C24E0C /* WJCanvasItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJCanvasItemView.h; sourceTree = "<group>"; };
+		48E1C71E27153F2900C24E0C /* WJCanvasController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJCanvasController.h; sourceTree = "<group>"; };
+		48E1C71F27153F2900C24E0C /* WJCanvasController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJCanvasController.m; sourceTree = "<group>"; };
 		48E1C72227153FEA00C24E0C /* Enlarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Enlarge.png; sourceTree = "<group>"; };
 		48E1C72327153FEA00C24E0C /* Enlarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Enlarge@2x.png"; sourceTree = "<group>"; };
 		48E1C72427153FEA00C24E0C /* Close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Close@2x.png"; sourceTree = "<group>"; };
@@ -133,6 +138,32 @@
 				6499DA29032B83F5042D6C78 /* libPods-testAAA.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		480ACE5E2718096200438021 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				480ACE652718145B00438021 /* 123.png */,
+				483D78D12716CA8800431488 /* edit_save.png */,
+				48E1C72827153FEA00C24E0C /* a.png */,
+				48E1C72727153FEA00C24E0C /* b.png */,
+				48E1C72627153FEA00C24E0C /* Close.png */,
+				48E1C72427153FEA00C24E0C /* Close@2x.png */,
+				48E1C72927153FEA00C24E0C /* Close@3x.png */,
+				48E1C72227153FEA00C24E0C /* Enlarge.png */,
+				48E1C72327153FEA00C24E0C /* Enlarge@2x.png */,
+				48E1C72527153FEA00C24E0C /* Enlarge@3x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		480ACE5F2718098300438021 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				480ACE60271809DB00438021 /* WJCanvasItemModel.h */,
+				480ACE61271809DB00438021 /* WJCanvasItemModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		482AA45C26EB3F65007BEC88 = {
@@ -242,19 +273,12 @@
 		48E1C71927153EA400C24E0C /* ImageEdit */ = {
 			isa = PBXGroup;
 			children = (
-				483D78D12716CA8800431488 /* edit_save.png */,
-				48E1C72827153FEA00C24E0C /* a.png */,
-				48E1C72727153FEA00C24E0C /* b.png */,
-				48E1C72627153FEA00C24E0C /* Close.png */,
-				48E1C72427153FEA00C24E0C /* Close@2x.png */,
-				48E1C72927153FEA00C24E0C /* Close@3x.png */,
-				48E1C72227153FEA00C24E0C /* Enlarge.png */,
-				48E1C72327153FEA00C24E0C /* Enlarge@2x.png */,
-				48E1C72527153FEA00C24E0C /* Enlarge@3x.png */,
-				48E1C71B27153EB700C24E0C /* EditImageView.h */,
-				48E1C71A27153EB700C24E0C /* EditImageView.m */,
-				48E1C71E27153F2900C24E0C /* EditImageController.h */,
-				48E1C71F27153F2900C24E0C /* EditImageController.m */,
+				480ACE5F2718098300438021 /* Model */,
+				480ACE5E2718096200438021 /* images */,
+				48E1C71B27153EB700C24E0C /* WJCanvasItemView.h */,
+				48E1C71A27153EB700C24E0C /* WJCanvasItemView.m */,
+				48E1C71E27153F2900C24E0C /* WJCanvasController.h */,
+				48E1C71F27153F2900C24E0C /* WJCanvasController.m */,
 				483D78A627168FD000431488 /* WJExtImageFileController.h */,
 				483D78A727168FD000431488 /* WJExtImageFileController.m */,
 				483D78AA2716AA0C00431488 /* WJExtImageFileCell.h */,
@@ -347,6 +371,7 @@
 				48B660DF26F718CB002A8537 /* DownImageController.xib in Resources */,
 				48E1C72F27153FEB00C24E0C /* b.png in Resources */,
 				4899FC1B2705AF61006F7F2E /* WebParseController.xib in Resources */,
+				480ACE662718145C00438021 /* 123.png in Resources */,
 				48E1C72D27153FEA00C24E0C /* Enlarge@3x.png in Resources */,
 				483D78E52716DA7500431488 /* WJEditImageInfoController.xib in Resources */,
 				48E1C72B27153FEA00C24E0C /* Enlarge@2x.png in Resources */,
@@ -414,17 +439,18 @@
 				482AA47026EB3F65007BEC88 /* ViewController.m in Sources */,
 				48788AC526F5B957006FD072 /* FileListModel.m in Sources */,
 				484A989026F079DD00AA79D7 /* UIImage+WJExt.m in Sources */,
-				48E1C71C27153EB700C24E0C /* EditImageView.m in Sources */,
+				48E1C71C27153EB700C24E0C /* WJCanvasItemView.m in Sources */,
 				482AA46A26EB3F65007BEC88 /* AppDelegate.m in Sources */,
 				48B660DE26F718CB002A8537 /* DownImageController.m in Sources */,
 				48788AC126F5B92F006FD072 /* FileListCell.m in Sources */,
 				482AA47B26EB3F68007BEC88 /* main.m in Sources */,
 				483D78DA2716D42E00431488 /* UITextView+CMInputView.m in Sources */,
 				4899FBE8270591EB006F7F2E /* FileGroupController.m in Sources */,
-				48E1C72027153F2900C24E0C /* EditImageController.m in Sources */,
+				48E1C72027153F2900C24E0C /* WJCanvasController.m in Sources */,
 				482AA46D26EB3F65007BEC88 /* SceneDelegate.m in Sources */,
 				483D78E42716DA7500431488 /* WJEditImageInfoController.m in Sources */,
 				48788ABC26F593DD006FD072 /* FileListController.m in Sources */,
+				480ACE62271809DB00438021 /* WJCanvasItemModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,17 +11,19 @@
 #import "WJFileManager.h"
 #import "FileListController.h"
 #import "WJExtImageFileController.h"
-#import "EditImageController.h"
+#import "WJCanvasController.h"
 #import <WJKit.h>
 #import "WJEditImageListController.h"
-@interface ViewController ()<WJExtImageFileControllerDelegate,WJEditImageListControllerDelegate>
+#import "WJEditImageInfoController.h"
+
+@interface ViewController ()<WJExtImageFileControllerDelegate,WJEditImageListControllerDelegate,WJCanvasControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (nonatomic,copy) NSString *fileName;
 @property (nonatomic,strong) WJExtImageFileController *fileController;
-@property (nonatomic,strong) EditImageController *canvasController;
+@property (nonatomic,strong) WJCanvasController *canvasController;
 @property (nonatomic,strong) WJEditImageListController *editController;
-
+@property (nonatomic,strong) WJEditImageInfoController *editInfoController;
 @end
 
 @implementation ViewController
@@ -36,24 +38,33 @@
     
     self.fileController = [[WJExtImageFileController alloc]init];
     self.fileController.delegate = self;
-    self.canvasController = [[EditImageController alloc]init];
-    
+    self.canvasController = [[WJCanvasController alloc]init];
+    self.canvasController.delegate = self;
     
     [self.view addSubview:self.canvasController.view];
     [self.view addSubview:self.fileController.view];
     [self.view addSubview:self.editController.view];
+    [self.view addSubview:self.editInfoController.view];
     
     
     [self addChildViewController:self.canvasController];
     [self addChildViewController:self.fileController];
     [self addChildViewController:self.editController];
+    [self addChildViewController:self.editInfoController];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.canvasController.view.frame = CGRectMake(0, 0, self.view.width - 200, self.view.height);
+    
     self.editController.view.frame = CGRectMake(0, 0, 100, self.view.height);
     self.fileController.view.frame = CGRectMake(self.view.frame.size.width - 200, 0, 200, self.view.frame.size.height);
+    self.editInfoController.view.frame = CGRectMake(self.editController.view.width, self.view.frame.size.height-300, self.fileController.view.x -self.editController.view.width , 300);
+    CGFloat x = self.editController.view.width;
+    CGFloat y = 0;
+    CGFloat width = self.fileController.view.x - self.editController.view.width;
+    CGFloat height = self.editInfoController.view.y;
+    
+    self.canvasController.view.frame = CGRectMake(x, y, width, height);
 }
 
 - (NSString *)fileName {
@@ -65,10 +76,6 @@
 
 - (IBAction)buttonPressed:(UIButton *)sender {
    
-//    NSLog(@"%@",NSHomeDirectory());
-//
-//    [self createFile];
-//    NSLog(@"完成");
 }
 
 
@@ -129,10 +136,18 @@
 }
 
 
+#pragma mark - <画布 wjCanvasControllerDidItem>
+
+- (void)wjCanvasControllerDidItem:(WJCanvasItemView *)view {
+    [self.editInfoController loadCanvasIemView:view];
+}
+
 #pragma mark - <右侧栏 WJExtImageFileControllerDelegate>
 
-- (void)WJExtImageFileControllerDidImage:(UIImage *)image {
-    [self.canvasController addImage:image];
+- (void)wjExtImageFileControllerDidModel:(WJCanvasItemModel *)model {
+    WJCanvasItemView *view = [self.canvasController addModel:model];
+    [self.editInfoController loadCanvasIemView:view];
+    
 }
 
 #pragma mark - <左侧栏 WJEditImageListControllerDelegate>
@@ -150,6 +165,15 @@
         _editController.delegate = self;
     }
     return _editController;
+}
+
+- (WJEditImageInfoController *)editInfoController {
+    if (!_editInfoController) {
+        _editInfoController = [[WJEditImageInfoController alloc]initWithNibName:@"WJEditImageInfoController" bundle:nil];
+        _editInfoController.view.backgroundColor = [UIColor whiteColor];
+        _editInfoController.view.layer.borderWidth =1 ;
+    }
+    return _editInfoController;
 }
 
 @end

@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WJCanvasItemModel.h"
 
-@interface EditImageView : UIImageView{
+@class WJCanvasItemView;
+@protocol WJCanvasItemViewDelegate <NSObject>
+
+- (void)editImageViewDidTap:(WJCanvasItemView *)view;
+
+@end
+
+@interface WJCanvasItemView : UIImageView{
     BOOL _isMove;
     CGPoint _startTouchPoint;
     CGPoint _startTouchCenter;
@@ -22,4 +30,13 @@
 
 @property (nonatomic,strong) UITextView *textView;
 
+@property (nonatomic,weak) id<WJCanvasItemViewDelegate>delegate;
+
+@property (nonatomic,copy) dispatch_block_t tapBlock;
+
+@property (nonatomic,strong) WJCanvasItemModel *model;
+
+- (void)updateView;
+
 @end
+

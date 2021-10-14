@@ -6,27 +6,23 @@
 //  Copyright © 2016年 mac. All rights reserved.
 //
 
-#import "EditImageView.h"
+#import "WJCanvasItemView.h"
 #import <WJKit.h>
 #import "UITextView+CMInputView.h"
 
-@interface EditImageView()
+@interface WJCanvasItemView()
 
-@property (nonatomic,strong) UIImageView *extHView;
-@property (nonatomic,strong) UIImageView *extVView;
-@property (nonatomic,assign) NSInteger direction;       // 默认0移动
 @property (nonatomic,strong) UIView *borderView;
+@property (nonatomic,strong) UIButton *closeButton;
 
 @end
 
-@implementation EditImageView
+@implementation WJCanvasItemView
 
 - (id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.userInteractionEnabled = YES;
         CGFloat space = 20;
-//        UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(space, space, frame.size.width-space*2, frame.size.height-space*2)];
-//        self.borderView = borderView;
         self.borderView.frame =CGRectMake(space, space, frame.size.width-space*2, frame.size.height-space*2);
         [self addSubview:self.borderView];
         [self addUI];
@@ -36,16 +32,18 @@
     return self;
 }
 
+- (void)setModel:(WJCanvasItemModel *)model {
+    _model = model;
+    [self updateView];
+}
+
+- (void)updateView {
+    self.textView.font = [UIFont systemFontOfSize:self.model.fontSize weight:UIFontWeightBold];
+    self.textView.textColor = [UIColor colorWithHexString:self.model.colorString];
+}
+
 - (void)addUI{
     CGFloat space = 20;
-//    UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(space, space, self.frame.size.width-space*2, self.frame.size.height-space*2)];
-//    borderView.backgroundColor = [UIColor clearColor];
-//    borderView.layer.borderColor = [UIColor whiteColor].CGColor;
-//    borderView.layer.borderWidth = 2;
-//    borderView.layer.masksToBounds = YES;
-//    [self addSubview:borderView];
-//    _borderView = borderView;
-    
     UIView *borderView = self.borderView;
     
     UIImage *editImg = [UIImage imageNamed:@"Enlarge.png"];
@@ -55,46 +53,27 @@
     [self addSubview:editImgView];
     _editImgView = editImgView;
     
+//    UIImage *norImage = [UIImage imageNamed:@"Close.png"];
+//    UIImage *selImage = [UIImage imageNamed:@"Close.png"];
+//    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    closeBtn.frame = CGRectMake(1, self.frame.size.height - space, norImage.size.width, norImage.size.height);
+//    [closeBtn setImage:norImage forState:UIControlStateNormal];
+//    [closeBtn setImage:selImage forState:UIControlStateHighlighted];
+//    [closeBtn addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:closeBtn];
+//    closeBtn.center = CGPointMake(borderView.frame.origin.x, borderView.frame.origin.y+borderView.frame.size.height);
+//    _closeImgView = closeBtn;
     
- 
-    
-    
-    UIImage *norImage = [UIImage imageNamed:@"Close.png"];
-    UIImage *selImage = [UIImage imageNamed:@"Close.png"];
-    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeBtn.frame = CGRectMake(1, self.frame.size.height - space, norImage.size.width, norImage.size.height);
-    [closeBtn setImage:norImage forState:UIControlStateNormal];
-    [closeBtn setImage:selImage forState:UIControlStateHighlighted];
-    [closeBtn addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:closeBtn];
-    closeBtn.center = CGPointMake(borderView.frame.origin.x, borderView.frame.origin.y+borderView.frame.size.height);
-    _closeImgView = closeBtn;
+    [self addSubview:self.closeButton];
+    _closeImgView = self.closeButton;
     
    _len = sqrt(self.frame.size.width/2*self.frame.size.width/2+self.frame.size.height/2*self.frame.size.height/2);
     
     self.textView.frame = borderView.frame;
     [self addSubview:self.textView];
-    [self addMoreUI:borderView];
+
 }
 
-- (void)addMoreUI:(UIView *)borderView{
-    
-    
-    UIImage *editImg2 = [UIImage imageNamed:@"Enlarge.png"];
-    UIImageView *editImgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    editImgView2.image = editImg2;
-    editImgView2.center = CGPointMake(borderView.frame.origin.x+borderView.frame.size.width, borderView.frame.size.height/2);
-    [self addSubview:editImgView2];
-    self.extHView = editImgView2;
-    
-    
-    UIImage *editImg3 = [UIImage imageNamed:@"Enlarge.png"];
-    UIImageView *editImgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    editImgView3.image = editImg3;
-    editImgView3.center = CGPointMake(borderView.frame.size.width/2, borderView.frame.size.height+10);
-    [self addSubview:editImgView3];
-    self.extVView = editImgView3;
-}
 
 - (void)closeBtnClick:(UIButton *)btn{
     self.hidden = YES;
@@ -105,6 +84,9 @@
     _borderView.hidden = NO;
     _editImgView.hidden = NO;
     _closeImgView.hidden = NO;
+    
+   
+    
 }
 - (void)hideEditBtn{
     _borderView.hidden = YES;
@@ -113,30 +95,25 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editImageViewDidTap:)]) {
+        [self.delegate editImageViewDidTap:self];
+    }
     [self showEditBtn];
     UITouch *touch = [touches anyObject];
     _startTouchPoint = [touch locationInView:self.superview];
     _startTouchCenter = self.center;
     _isMove = YES;
     CGPoint p = [touch locationInView:self];
-    NSLog(@"ttddddddddd----- %@   %@",NSStringFromCGRect(_editImgView.frame),NSStringFromCGPoint(p));
+//    NSLog(@"ttddddddddd----- %@   %@",NSStringFromCGRect(_editImgView.frame),NSStringFromCGPoint(p));
     if (CGRectContainsPoint(_editImgView.frame,p)) {
         _isMove = NO;
     }
-    self.direction = 0;
-    if (CGRectContainsPoint(self.extHView.frame,p)) {
-        self.direction = 1;
-        _isMove = NO;
-    }
-    if (CGRectContainsPoint(self.extVView.frame,p)) {
-        _isMove = NO;
-        self.direction = 2;
-    }
-    
-
 }
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSLog(@"touchesMoved");
+    if (self.delegate && [self.delegate respondsToSelector:@selector(editImageViewDidTap:)]) {
+        [self.delegate editImageViewDidTap:self];
+    }
+//    NSLog(@"touchesMoved");
     if (_isMove) {
         CGPoint curPoint = [[touches anyObject] locationInView:self.superview];
         self.center =  CGPointMake(curPoint.x-(_startTouchPoint.x-_startTouchCenter.x), curPoint.y-(_startTouchPoint.y-_startTouchCenter.y));
@@ -156,16 +133,6 @@
             angle = angle + 225;
         }
         
-        // 添加的逻辑
-        if (self.direction>0) {
-            if (self.direction == 1) {
-                self.width +=sx;
-            }else if (self.direction == 2){
-                self.height +=sy;
-            }
-            return;;
-        }
-        
         _editImgView.transform = CGAffineTransformMakeScale(1.0f/scale, 1.0f/scale);
         _closeImgView.transform = CGAffineTransformMakeScale(1.0f/scale, 1.0f/scale);
         _borderView.layer.borderWidth = 2*1.0f/scale;
@@ -183,7 +150,11 @@
 - (void)layoutSubviews {
     
     CGFloat space = 20;
+    
+    self.borderView.frame =CGRectMake(space, space, self.frame.size.width-space*2, self.frame.size.height-space*2);
     self.textView.frame = self.borderView.frame;
+    self.closeButton.frame = CGRectMake(0, 0, 30, 30);
+    self.closeButton.center = CGPointMake(self.borderView.frame.origin.x, self.borderView.frame.origin.y+self.borderView.frame.size.height);
 }
 
 
@@ -192,12 +163,23 @@
 - (UITextView *)textView {
     if (!_textView) {
         _textView = [[UITextView alloc]initWithFrame:CGRectZero];
-//        _textView.text = @"测试哈哈哈";
         _textView.font = [UIFont systemFontOfSize:50 weight:UIFontWeightBold];
         _textView.textColor = [UIColor redColor];
         _textView.backgroundColor = [UIColor clearColor];
     }
     return _textView;
+}
+
+- (UIButton *)closeButton {
+    if (!_closeButton) {
+        _closeButton = [UIButton new];
+        UIImage *norImage = [UIImage imageNamed:@"Close.png"];
+        [_closeButton setImage:norImage forState:UIControlStateNormal];
+        [_closeButton setImage:norImage forState:UIControlStateHighlighted];
+        [_closeButton addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _closeButton;
 }
 
 - (UIView *)borderView {

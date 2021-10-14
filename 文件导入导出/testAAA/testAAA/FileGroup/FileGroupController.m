@@ -79,8 +79,6 @@
 
 /// 创建文件夹
 -(BOOL)createDir:(NSString *)dirPath{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString * path = dirPath;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDir;

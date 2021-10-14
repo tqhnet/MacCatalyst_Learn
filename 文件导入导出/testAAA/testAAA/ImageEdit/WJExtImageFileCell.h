@@ -6,12 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WJCanvasItemModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WJExtImageFileCell : UICollectionViewCell
 
 @property (nonatomic,strong) UIImageView *imageView;
+
+@property (nonatomic,strong) WJCanvasItemModel *model;
 
 @end
 

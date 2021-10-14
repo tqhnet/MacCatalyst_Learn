@@ -5,10 +5,10 @@
 //  Created by xj_mac on 2021/10/12.
 //
 
-#import "EditImageController.h"
-#import "EditImageView.h"
+#import "WJCanvasController.h"
+#import "WJCanvasItemView.h"
 
-@interface EditImageController ()
+@interface WJCanvasController ()<WJCanvasItemViewDelegate>
 
 @property (nonatomic,strong) UIView *bgView;
 @property (nonatomic,strong) NSMutableArray *editImageViewArray;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation EditImageController
+@implementation WJCanvasController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,13 +38,35 @@
 }
 
 
-- (void)addImage:(UIImage *)image {
-    UIImage *img = image;
-    EditImageView *editImgView = [[EditImageView alloc] initWithFrame:CGRectMake(100, 100, img.size.width, img.size.height)];
-    editImgView.center = self.view.center;
+//- (void)addImage:(UIImage *)image {
+//    UIImage *img = image;
+//    WJCanvasItemView *editImgView = [[WJCanvasItemView alloc] initWithFrame:CGRectMake(100, 100, img.size.width, img.size.height)];
+//    editImgView.delegate =self;
+//    editImgView.center = CGPointMake(self.view.center.x - 50, self.view.center.y);
+//    editImgView.image = img;
+//    [self.bgView addSubview:editImgView];
+//    [self.editImageViewArray addObject:editImgView];
+//}
+
+- (WJCanvasItemView *)addModel:(WJCanvasItemModel *)model {
+    
+    UIImage *img = [UIImage imageWithContentsOfFile:model.filePath];
+    WJCanvasItemView *editImgView = [[WJCanvasItemView alloc] initWithFrame:CGRectMake(100, 100, img.size.width, img.size.height)];
+    editImgView.delegate =self;
+    editImgView.model = model;
+    editImgView.center = CGPointMake(self.view.center.x - 50, self.view.center.y);
     editImgView.image = img;
     [self.bgView addSubview:editImgView];
     [self.editImageViewArray addObject:editImgView];
+    return editImgView;
+}
+
+#pragma mark - <EditImageViewDelegate>
+
+- (void)editImageViewDidTap:(WJCanvasItemView *)view {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(wjCanvasControllerDidItem:)]) {
+        [self.delegate wjCanvasControllerDidItem:view];
+    }
 }
 
 #pragma mark - others
@@ -63,19 +85,19 @@
 
 
 - (void)hideAllBtn {
-    for (EditImageView *editImgView in self.editImageViewArray) {
+    for (WJCanvasItemView *editImgView in self.editImageViewArray) {
         [editImgView hideEditBtn];
     }
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tapGesture{
-    NSLog(@"tttttttt");
+    NSLog(@"点击空白区域");
     [self.view endEditing:YES];
     [self hideAllBtn];
 }
 
 - (void)removeEdit:(NSNotification *)notify{
-    EditImageView *editImgView = notify.object;
+    WJCanvasItemView *editImgView = notify.object;
     [self.editImageViewArray removeObject:editImgView];
 }
 
@@ -84,7 +106,9 @@
     
 }
 
-#pragma mark - lazy
+
+
+#pragma mark - layz
 
 - (UIView *)tapView {
     if (!_tapView) {
