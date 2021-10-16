@@ -13,6 +13,8 @@
 
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic,copy) NSString *path;//路径
+
 @end
 
 @implementation FileListController
@@ -53,6 +55,12 @@
     
     
     self.title = [self.path stringByReplacingOccurrencesOfString:NSHomeDirectory() withString:@""];
+}
+
+
+- (void)setParamsmodel:(FileListParamsModel *)paramsmodel {
+    _paramsmodel = paramsmodel;
+    self.path = paramsmodel.path;
 }
 
 - (void)rightItemButtonPressed {
@@ -142,3 +150,7 @@
 
 @end
 
+
+@implementation FileListParamsModel
+
+@end

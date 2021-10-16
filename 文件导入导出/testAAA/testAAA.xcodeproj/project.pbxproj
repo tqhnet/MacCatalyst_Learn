@@ -16,6 +16,8 @@
 		482AA47526EB3F68007BEC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 482AA47426EB3F68007BEC88 /* Assets.xcassets */; };
 		482AA47826EB3F68007BEC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482AA47626EB3F68007BEC88 /* LaunchScreen.storyboard */; };
 		482AA47B26EB3F68007BEC88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 482AA47A26EB3F68007BEC88 /* main.m */; };
+		48342014271A74BB00A2A860 /* WJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48342013271A74BB00A2A860 /* WJRouter.m */; };
+		48342018271A75A900A2A860 /* WJRouterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 48342017271A75A900A2A860 /* WJRouterAPI.m */; };
 		483D78A827168FD100431488 /* WJExtImageFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D78A727168FD000431488 /* WJExtImageFileController.m */; };
 		483D78AC2716AA0C00431488 /* WJExtImageFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D78AB2716AA0C00431488 /* WJExtImageFileCell.m */; };
 		483D78CF2716C89C00431488 /* WJEditImageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D78CE2716C89C00431488 /* WJEditImageListController.m */; };
@@ -67,6 +69,10 @@
 		482AA47926EB3F68007BEC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		482AA47A26EB3F68007BEC88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		482AA48226EB3F89007BEC88 /* testAAA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testAAA.entitlements; sourceTree = "<group>"; };
+		48342012271A74BB00A2A860 /* WJRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJRouter.h; sourceTree = "<group>"; };
+		48342013271A74BB00A2A860 /* WJRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJRouter.m; sourceTree = "<group>"; };
+		48342016271A75A900A2A860 /* WJRouterAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJRouterAPI.h; sourceTree = "<group>"; };
+		48342017271A75A900A2A860 /* WJRouterAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJRouterAPI.m; sourceTree = "<group>"; };
 		483D78A627168FD000431488 /* WJExtImageFileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJExtImageFileController.h; sourceTree = "<group>"; };
 		483D78A727168FD000431488 /* WJExtImageFileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJExtImageFileController.m; sourceTree = "<group>"; };
 		483D78AA2716AA0C00431488 /* WJExtImageFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJExtImageFileCell.h; sourceTree = "<group>"; };
@@ -187,6 +193,11 @@
 		482AA46726EB3F65007BEC88 /* testAAA */ = {
 			isa = PBXGroup;
 			children = (
+				48D8D682271ABD9A008E063D /* showData */,
+				48342010271A734E00A2A860 /* DataToSql */,
+				4899FC112705AEE6006F7F2E /* WebParse */,
+				4899FBE4270590FB006F7F2E /* FileGroup */,
+				48B660DA26F715FF002A8537 /* DownImage */,
 				483D78D72716D42300431488 /* Tool */,
 				48E1C71927153EA400C24E0C /* ImageEdit */,
 				48788AC726F5B964006FD072 /* FileList */,
@@ -197,17 +208,8 @@
 				482AA46C26EB3F65007BEC88 /* SceneDelegate.m */,
 				482AA46E26EB3F65007BEC88 /* ViewController.h */,
 				482AA46F26EB3F65007BEC88 /* ViewController.m */,
-				484A988A26F0720400AA79D7 /* WJSpiderManager.h */,
-				484A988B26F0720400AA79D7 /* WJSpiderManager.m */,
-				484A989226F07FBA00AA79D7 /* WJFileManager.h */,
-				484A989326F07FBA00AA79D7 /* WJFileManager.m */,
-				484A988E26F079DD00AA79D7 /* UIImage+WJExt.h */,
-				484A988F26F079DD00AA79D7 /* UIImage+WJExt.m */,
 				48788AC926F5C193006FD072 /* MainTableViewController.h */,
 				48788ACA26F5C193006FD072 /* MainTableViewController.m */,
-				4899FC112705AEE6006F7F2E /* WebParse */,
-				4899FBE4270590FB006F7F2E /* FileGroup */,
-				48B660DA26F715FF002A8537 /* DownImage */,
 				482AA47126EB3F65007BEC88 /* Main.storyboard */,
 				482AA47426EB3F68007BEC88 /* Assets.xcassets */,
 				482AA47626EB3F68007BEC88 /* LaunchScreen.storyboard */,
@@ -217,11 +219,28 @@
 			path = testAAA;
 			sourceTree = "<group>";
 		};
+		48342010271A734E00A2A860 /* DataToSql */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataToSql;
+			sourceTree = "<group>";
+		};
 		483D78D72716D42300431488 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				484A988A26F0720400AA79D7 /* WJSpiderManager.h */,
+				484A988B26F0720400AA79D7 /* WJSpiderManager.m */,
+				484A989226F07FBA00AA79D7 /* WJFileManager.h */,
+				484A989326F07FBA00AA79D7 /* WJFileManager.m */,
+				484A988E26F079DD00AA79D7 /* UIImage+WJExt.h */,
+				484A988F26F079DD00AA79D7 /* UIImage+WJExt.m */,
 				483D78D82716D42D00431488 /* UITextView+CMInputView.h */,
 				483D78D92716D42D00431488 /* UITextView+CMInputView.m */,
+				48342012271A74BB00A2A860 /* WJRouter.h */,
+				48342013271A74BB00A2A860 /* WJRouter.m */,
+				48342016271A75A900A2A860 /* WJRouterAPI.h */,
+				48342017271A75A900A2A860 /* WJRouterAPI.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -268,6 +287,13 @@
 				48B660DD26F718CA002A8537 /* DownImageController.xib */,
 			);
 			path = DownImage;
+			sourceTree = "<group>";
+		};
+		48D8D682271ABD9A008E063D /* showData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = showData;
 			sourceTree = "<group>";
 		};
 		48E1C71927153EA400C24E0C /* ImageEdit */ = {
@@ -441,6 +467,7 @@
 				484A989026F079DD00AA79D7 /* UIImage+WJExt.m in Sources */,
 				48E1C71C27153EB700C24E0C /* WJCanvasItemView.m in Sources */,
 				482AA46A26EB3F65007BEC88 /* AppDelegate.m in Sources */,
+				48342018271A75A900A2A860 /* WJRouterAPI.m in Sources */,
 				48B660DE26F718CB002A8537 /* DownImageController.m in Sources */,
 				48788AC126F5B92F006FD072 /* FileListCell.m in Sources */,
 				482AA47B26EB3F68007BEC88 /* main.m in Sources */,
@@ -448,6 +475,7 @@
 				4899FBE8270591EB006F7F2E /* FileGroupController.m in Sources */,
 				48E1C72027153F2900C24E0C /* WJCanvasController.m in Sources */,
 				482AA46D26EB3F65007BEC88 /* SceneDelegate.m in Sources */,
+				48342014271A74BB00A2A860 /* WJRouter.m in Sources */,
 				483D78E42716DA7500431488 /* WJEditImageInfoController.m in Sources */,
 				48788ABC26F593DD006FD072 /* FileListController.m in Sources */,
 				480ACE62271809DB00438021 /* WJCanvasItemModel.m in Sources */,

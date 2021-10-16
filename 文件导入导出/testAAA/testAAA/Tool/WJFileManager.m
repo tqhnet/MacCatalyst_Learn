@@ -6,11 +6,14 @@
 //
 
 #import "WJFileManager.h"
+#import <JQFMDB.h>
 
 @interface WJFileManager()<UIDocumentPickerDelegate>
 
 @property (nonatomic,strong) NSString *filePath;
 @property (nonatomic,copy) dispatch_block_t importFinishBlock;
+
+
 @end
 
 @implementation WJFileManager

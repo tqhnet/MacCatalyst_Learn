@@ -8,6 +8,21 @@
 #import "DownImageController.h"
 #import "WJFileManager.h"
 #import <WJKit.h>
+#import "WJRouter.h"
+#import <JQFMDB/JQFMDB.h>
+
+
+@interface UEDataModel : NSObject
+
+@property (nonatomic,copy) NSString *title;
+@property (nonatomic,copy) NSString *url;
+@property (nonatomic,copy) NSString *imageUrl;
+
+@end
+
+@implementation UEDataModel
+
+@end
 
 @interface DownImageController ()
 @property (weak, nonatomic) IBOutlet UITextField *csvPathTextField;
@@ -15,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (nonatomic,copy) NSString *suffix;
+
+@property (nonatomic,strong) JQFMDB *db;//同事只能打开一个数据库
 
 @end
 
@@ -103,8 +120,79 @@
     self.progressLabel.text = @"提示：沙盒路径已经复制到粘贴板,使用前往文件夹打开";
 }
 
-#pragma mark - others
 
+/// 自动检查字段
+
+- (IBAction)autoCheckDataButton:(UIButton *)sender {
+    NSArray *array = [self parseCSV:self.csvPathTextField.text];
+    NSMutableArray *keyArray = [NSMutableArray array];
+    NSMutableString *string = [[NSMutableString alloc]init];
+    if (array.count>0) {
+        NSDictionary *dic = array[0];
+        for (int i = 0; i<[dic allKeys].count; i++) {
+            NSString *key = [dic allKeys][i];
+            [keyArray addObject:key];
+            [string appendString:key];
+            [string appendString:@","];
+        }
+        self.progressLabel.text = string;
+    }else {
+        self.progressLabel.text = @"没有识别到";
+    }
+}
+
+/// 悬着文件路径
+- (IBAction)importFileButton:(UIButton *)sender {
+    [WJRouter gotoController:self name:WJRouterAPI_fileList params:nil];
+}
+
+
+/// 导入文件
+- (IBAction)importButton:(UIButton *)sender {
+    
+    NSString *dir = [NSString stringWithFormat:@"%@/%@",[WJFileManager getDocumentsPath],@"csv.csv"];
+    [[WJFileManager shareManager]importFileWithController:self filePath:dir types:@[] finishBlock:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.csvPathTextField.text = dir;
+        });
+        
+    }];
+}
+
+// 数据转化为sql
+- (IBAction)dataToSqlButtonPressed:(UIButton *)sender {
+    NSArray *array = [self parseCSV:self.csvPathTextField.text];
+    NSString *dir = [WJFileManager createDir:@"dataTosql" isDocuments:YES];
+    self.db = [[JQFMDB shareDatabase]initWithDBName:@"dataTosql.sqlite" path:dir];
+    
+    if ([self.db jq_isExistTable:@"environment"]) {// 避免录入重复数据
+        return;
+    }
+    bool succes = [self.db jq_createTable:@"environment" dicOrModel:[UEDataModel class]];
+    if (succes) {
+        
+        for (int i = 1; i<array.count; i++) {
+            NSDictionary *dic = array[i];
+            [self.db jq_insertTable:@"environment" dicOrModel:dic];
+        }
+    }
+}
+
+// 将数据转化为json
+- (IBAction)dataToJsonButtonPressed:(UIButton *)sender {
+    NSArray *array = [self parseCSV:self.csvPathTextField.text];
+    NSMutableArray *dataArray = [NSMutableArray array];
+    for (int i = 1; i<array.count; i++) {
+        NSDictionary *dic = array[i];
+        [dataArray addObject:dic];
+    }
+    NSString *dataString = [dataArray yy_modelToJSONString];
+    NSString *dir = [WJFileManager createDir:@"dataTosql" isDocuments:YES];
+    CGFloat time = [[NSDate dateWithTimeIntervalSinceNow:0] timeIntervalSince1970];
+    [dataString writeToFile:[NSString stringWithFormat:@"%@/%f.json",dir,time] atomically:YES];
+}
+
+#pragma mark - others
 
 // 因为有特殊字符所以重命名文件目录中的图片
 - (void)findAllReourceAndRname:(NSString *)dirOutputPath {

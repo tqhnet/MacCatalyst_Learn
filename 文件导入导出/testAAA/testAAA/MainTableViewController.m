@@ -10,6 +10,7 @@
 #import "DownImageController.h"
 #import "FileGroupController.h"
 #import "WebParseController.h"
+#import "WJRouter.h"
 
 
 
@@ -32,7 +33,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片",@"批量下载图片",@"将文件分组",@"网页解析",@"图片编辑"]];
+    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片",@"批量下载图片",@"将文件分组",@"网页解析",@"数据生成sqlite"]];
     [self.view addSubview:self.tableView];
 }
 
@@ -84,10 +85,13 @@
         self.fileName = @"test";
         [self importFile];
     }else if ([string isEqualToString:@"查看目录"]){
-        FileListController *detail = [[FileListController alloc]init];
-        NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
-        detail.path = dirOutputPath;
-        [self.navigationController pushViewController:detail animated:YES];
+//        FileListController *detail = [[FileListController alloc]init];
+//        NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
+//        detail.path = dirOutputPath;
+//        [self.navigationController pushViewController:detail animated:YES];
+        
+        [WJRouter gotoController:self name:WJRouterAPI_fileList params:@{@"path":[NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()]}];
+        
     }else if ([string isEqualToString:@"文字转图片"]){
         [self gotoCreatImage];
     }else if ([string isEqualToString:@"批量下载图片"]){
@@ -97,7 +101,7 @@
         [self.navigationController pushViewController:group animated:YES];
     }else if ([string isEqualToString:@"网页解析"]){
         [self gotoWebParse];
-    }else if ([string isEqualToString:@"图片编辑"]){
+    }else if ([string isEqualToString:@"数据生成sqlite"]){
        
     }
 }
@@ -156,7 +160,6 @@
         // startAccessingSecurityScopedResource fail
     }
     [url stopAccessingSecurityScopedResource];
-    
 }
 
 - (void)documentPickerWasCancelled:(UIDocumentPickerViewController *)controller {

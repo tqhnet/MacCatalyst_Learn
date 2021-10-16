@@ -8,6 +8,7 @@
 #import "FileGroupController.h"
 #import "FileListController.h"
 #import "WJFileManager.h"
+#import "WJRouter.h"
 
 @interface FileGroupController ()
 
@@ -25,10 +26,12 @@
 
 - (IBAction)openDirButtonPressed:(UIButton *)sender {
     NSLog(@"aaaaaaaaa");
-    FileListController *detail = [[FileListController alloc]init];
+//    FileListController *detail = [[FileListController alloc]init];
     NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
-    detail.path = dirOutputPath;
-    [self.navigationController pushViewController:detail animated:YES];
+//    detail.path = dirOutputPath;
+//    [self.navigationController pushViewController:detail animated:YES];
+    [WJRouter gotoController:self name:WJRouterAPI_fileList params:@{@"path":dirOutputPath}];
+    
 }
 
 - (IBAction)startButtonPressed:(UIButton *)sender {

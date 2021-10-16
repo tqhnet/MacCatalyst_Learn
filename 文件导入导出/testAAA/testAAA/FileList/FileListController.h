@@ -10,11 +10,18 @@
 NS_ASSUME_NONNULL_BEGIN
 
 // 文件列表查看
-
-@interface FileListController : UIViewController
+@interface FileListParamsModel : NSObject
 
 @property (nonatomic,copy) NSString *path;//路径
 
 @end
+
+@interface FileListController : UIViewController
+
+@property (nonatomic,copy) FileListParamsModel *paramsmodel;
+
+@end
+
+
 
 NS_ASSUME_NONNULL_END

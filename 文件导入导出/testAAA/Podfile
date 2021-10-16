@@ -9,6 +9,7 @@ target 'testAAA' do
   pod 'AFNetworking', '~> 4.0'
   pod 'WJTKit'
   pod 'YYModel'
+  pod 'JQFMDB'
 #  pod 'YYImage'
 #  pod 'YYImage/WebP'
 end
