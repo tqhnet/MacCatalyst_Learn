@@ -6,7 +6,6 @@
 //
 
 #import "ViewController.h"
-#import "WJSpiderManager.h"
 #import "UIImage+WJExt.h"
 #import "WJFileManager.h"
 #import "FileListController.h"

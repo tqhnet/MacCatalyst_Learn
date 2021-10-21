@@ -11,7 +11,7 @@
 #import "FileGroupController.h"
 #import "WebParseController.h"
 #import "WJRouter.h"
-
+#import "WJSpiderViewController.h"
 
 
 @interface MainTableViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentPickerDelegate>
@@ -33,7 +33,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字转图片",@"批量下载图片",@"将文件分组",@"网页解析",@"数据生成sqlite"]];
+    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字图片合成",@"批量下载图片和数据格式转换",@"将文件分组",@"网页解析",@"爬虫测试"]];
     [self.view addSubview:self.tableView];
 }
 
@@ -103,6 +103,10 @@
         [self gotoWebParse];
     }else if ([string isEqualToString:@"数据生成sqlite"]){
        
+    }else if([string isEqualToString:@"爬虫测试"]){
+        //WJSpiderViewController
+        WJSpiderViewController *vc = [[WJSpiderViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

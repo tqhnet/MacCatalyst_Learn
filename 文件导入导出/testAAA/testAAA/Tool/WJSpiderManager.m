@@ -12,7 +12,6 @@
 
 @implementation WJSpiderManager
 
-
 - (instancetype)init
 {
     self = [super init];
@@ -29,6 +28,8 @@
     }
     return self;
 }
+
+//- (void)
 
 - (void)setCookie:(NSString *)cookie {
     [PPNetworkHelper setValue:cookie forHTTPHeaderField:@"Cookie"];
