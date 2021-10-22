@@ -9,6 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^WebParseViewModelLoadWebBlock)(NSString * url);
+typedef void(^WebParseViewModelMessageBlock)(NSString * string);
 
 @interface WebParseViewModel : NSObject
 
@@ -16,7 +17,7 @@ typedef void(^WebParseViewModelLoadWebBlock)(NSString * url);
 @property (nonatomic,assign) BOOL loadWebLock;  // 锁定加载web用于队列访问
 
 /// 加载内容解析成数组
-- (void)loadText:(NSString *)text loadWebBlock:(WebParseViewModelLoadWebBlock)loadWebBlock;
+- (void)loadText:(NSString *)text loadWebBlock:(WebParseViewModelLoadWebBlock)loadWebBlock finish:(WebParseViewModelMessageBlock)finish;
 
 /// 加载完成
 - (void)webloadFinish:(NSString *)html;

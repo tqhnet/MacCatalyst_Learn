@@ -12,6 +12,7 @@
 #import <YYModel.h>
 #import "WebParseViewModel.h"
 #import "WJPathManager.h"
+#import <WJKit.h>
 
 //https://www.jianshu.com/p/5cf0d241ae12 这篇文章介绍的比较详细可以参考
 //https://www.jianshu.com/p/6e022ccf5aa3 iOS获取WebView加载的HTML
@@ -158,9 +159,14 @@
 
     //\nhttps://search.jd.com/Search?keyword=pc\nhttps://www.jianshu.com/u/e163bc6048d8
     NSString *str = @"switch,pc";
+//    NSString *message = [NSString stringWithFormat:@"路径 = %@",self.path];
     [self.viewModel loadText:str loadWebBlock:^(NSString * _Nonnull url) {
         self.textField.text = url;
         [self loadUrl:url];
+    }finish:^(NSString *message){
+        [UIAlertController showAlertInViewController:self withTitle:@"提示" message:message cancelButtonTitle:@"确定" destructiveButtonTitle:nil otherButtonTitles:nil tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+            
+        }];
     }];
 }
 

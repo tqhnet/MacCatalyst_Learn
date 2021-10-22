@@ -9,6 +9,7 @@
 #import "WJPathManager.h"
 #import <TFHpple.h>
 #import <WJKit.h>
+#import "WJFileManager.h"
 
 //#import "WJParseJDDBModel"
 @interface WebParseViewModel()
@@ -25,7 +26,7 @@
 
 
 /// 加载京东的数据规则
-- (void)loadText:(NSString *)text loadWebBlock:(WebParseViewModelLoadWebBlock)loadWebBlock {
+- (void)loadText:(NSString *)text loadWebBlock:(WebParseViewModelLoadWebBlock)loadWebBlock finish:(WebParseViewModelMessageBlock)finish {
     
     self.baseUrl = @"https://search.jd.com/Search?keyword=";
     BOOL success = [[WJPathManager shareManager] openWebParseDB];
@@ -44,7 +45,10 @@
         NSString *now = [NSDate stringForDateWithMDHM:[NSDate dateWithTimeIntervalSinceNow:0].timeIntervalSince1970];
         NSLog(@"当前时间 = %@",now);
         if ([NSDate dateWithTimeIntervalSinceNow:0].timeIntervalSince1970 - model.time <= 600) {
-            NSLog(@"距离上次时间不超过10分钟");
+//            NSLog(@"距离上次时间不超过10分钟");
+            if (finish) {
+                finish(@"距离上次时间不超过10分钟");
+            }
             return;
         }
     }
@@ -77,8 +81,14 @@
         NSLog(@"---end--");
         /// 释放
         self.sema = nil;
+        //UIAlertController
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSString *str = [NSString stringWithFormat:@"路径 = %@/webParse",[WJFileManager getDocumentsPath]];
+            if (finish) {
+                finish(str);
+            }
+        });
     });
-    
 }
 
 #pragma mark - 数据表查询
