@@ -85,16 +85,10 @@
         self.fileName = @"test";
         [self importFile];
     }else if ([string isEqualToString:@"查看目录"]){
-//        FileListController *detail = [[FileListController alloc]init];
-//        NSString *dirOutputPath = [NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()];
-//        detail.path = dirOutputPath;
-//        [self.navigationController pushViewController:detail animated:YES];
-        
         [WJRouter gotoController:self name:WJRouterAPI_fileList params:@{@"path":[NSString stringWithFormat:@"%@/Documents",NSHomeDirectory()]}];
-        
-    }else if ([string isEqualToString:@"文字转图片"]){
+    }else if ([string isEqualToString:@"文字图片合成"]){
         [self gotoCreatImage];
-    }else if ([string isEqualToString:@"批量下载图片"]){
+    }else if ([string isEqualToString:@"批量下载图片和数据格式转换"]){
         [self gotoDownImage];
     }else if ([string isEqualToString:@"将文件分组"]){
         FileGroupController *group = [[FileGroupController alloc]init];

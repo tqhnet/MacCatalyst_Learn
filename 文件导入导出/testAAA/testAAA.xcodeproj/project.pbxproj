@@ -20,8 +20,6 @@
 		48342018271A75A900A2A860 /* WJRouterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 48342017271A75A900A2A860 /* WJRouterAPI.m */; };
 		483AF7D4272110D5007DE5C0 /* WebParseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483AF7D3272110D5007DE5C0 /* WebParseViewModel.m */; };
 		483AF7D827211B52007DE5C0 /* WJPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 483AF7D727211B52007DE5C0 /* WJPathManager.m */; };
-		483AF7DE27214C14007DE5C0 /* DataAnalysisController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483AF7DC27214C14007DE5C0 /* DataAnalysisController.m */; };
-		483AF7DF27214C14007DE5C0 /* DataAnalysisController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483AF7DD27214C14007DE5C0 /* DataAnalysisController.xib */; };
 		483D78A827168FD100431488 /* WJExtImageFileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D78A727168FD000431488 /* WJExtImageFileController.m */; };
 		483D78AC2716AA0C00431488 /* WJExtImageFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D78AB2716AA0C00431488 /* WJExtImageFileCell.m */; };
 		483D78CF2716C89C00431488 /* WJEditImageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 483D78CE2716C89C00431488 /* WJEditImageListController.m */; };
@@ -89,9 +87,6 @@
 		483AF7D3272110D5007DE5C0 /* WebParseViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebParseViewModel.m; sourceTree = "<group>"; };
 		483AF7D627211B52007DE5C0 /* WJPathManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJPathManager.h; sourceTree = "<group>"; };
 		483AF7D727211B52007DE5C0 /* WJPathManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJPathManager.m; sourceTree = "<group>"; };
-		483AF7DB27214C14007DE5C0 /* DataAnalysisController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataAnalysisController.h; sourceTree = "<group>"; };
-		483AF7DC27214C14007DE5C0 /* DataAnalysisController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataAnalysisController.m; sourceTree = "<group>"; };
-		483AF7DD27214C14007DE5C0 /* DataAnalysisController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataAnalysisController.xib; sourceTree = "<group>"; };
 		483D78A627168FD000431488 /* WJExtImageFileController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJExtImageFileController.h; sourceTree = "<group>"; };
 		483D78A727168FD000431488 /* WJExtImageFileController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJExtImageFileController.m; sourceTree = "<group>"; };
 		483D78AA2716AA0C00431488 /* WJExtImageFileCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJExtImageFileCell.h; sourceTree = "<group>"; };
@@ -223,8 +218,6 @@
 		482AA46726EB3F65007BEC88 /* testAAA */ = {
 			isa = PBXGroup;
 			children = (
-				48D8D682271ABD9A008E063D /* showData */,
-				48342010271A734E00A2A860 /* DataToSql */,
 				4899FC112705AEE6006F7F2E /* WebParse */,
 				4899FBE4270590FB006F7F2E /* FileGroup */,
 				48B660DA26F715FF002A8537 /* DownImage */,
@@ -249,13 +242,6 @@
 				482AA47A26EB3F68007BEC88 /* main.m */,
 			);
 			path = testAAA;
-			sourceTree = "<group>";
-		};
-		48342010271A734E00A2A860 /* DataToSql */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataToSql;
 			sourceTree = "<group>";
 		};
 		483D78D72716D42300431488 /* Tool */ = {
@@ -333,9 +319,6 @@
 				4899FC182705AF61006F7F2E /* WebParseController.m */,
 				483AF7D2272110D5007DE5C0 /* WebParseViewModel.h */,
 				483AF7D3272110D5007DE5C0 /* WebParseViewModel.m */,
-				483AF7DB27214C14007DE5C0 /* DataAnalysisController.h */,
-				483AF7DC27214C14007DE5C0 /* DataAnalysisController.m */,
-				483AF7DD27214C14007DE5C0 /* DataAnalysisController.xib */,
 				483AF7D627211B52007DE5C0 /* WJPathManager.h */,
 				483AF7D727211B52007DE5C0 /* WJPathManager.m */,
 				4899FC192705AF61006F7F2E /* WebParseController.xib */,
@@ -351,13 +334,6 @@
 				48B660DD26F718CA002A8537 /* DownImageController.xib */,
 			);
 			path = DownImage;
-			sourceTree = "<group>";
-		};
-		48D8D682271ABD9A008E063D /* showData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = showData;
 			sourceTree = "<group>";
 		};
 		48E1C71927153EA400C24E0C /* ImageEdit */ = {
@@ -449,7 +425,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				483AF7DF27214C14007DE5C0 /* DataAnalysisController.xib in Resources */,
 				48582466272006A600D89C1E /* JStoOC.html in Resources */,
 				48582461272006A600D89C1E /* backbutton@3x.png in Resources */,
 				48E1C73127153FEB00C24E0C /* Close@3x.png in Resources */,
@@ -527,7 +502,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				485824582720069D00D89C1E /* SLWebViewController.m in Sources */,
-				483AF7DE27214C14007DE5C0 /* DataAnalysisController.m in Sources */,
 				48788ACB26F5C193006FD072 /* MainTableViewController.m in Sources */,
 				483D78CF2716C89C00431488 /* WJEditImageListController.m in Sources */,
 				484A988C26F0720400AA79D7 /* WJSpiderManager.m in Sources */,
