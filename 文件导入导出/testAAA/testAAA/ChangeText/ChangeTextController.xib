@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="mac" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeTextController">
+            <connections>
+                <outlet property="inputSegment" destination="XhV-kG-gLb" id="0tQ-5y-GKj"/>
+                <outlet property="inputTextView" destination="zyI-k8-0E4" id="69n-Wr-edO"/>
+                <outlet property="outputSegment" destination="xHD-pN-v1R" id="hoe-cS-Lwg"/>
+                <outlet property="outputTextView" destination="Erh-hR-Z45" id="VB7-7e-Vx6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zyI-k8-0E4">
+                    <rect key="frame" x="20" y="236" width="372" height="344"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <string key="text">P_title=%E9%9B%B6%3A%E6%BF%A1%E9%B8%A6%E4%B9%8B%E5%B7%AB%E5%A5%B3+%E6%94%AF%E6%8C%814K%2F%E5%AE%98%E6%96%B9%E4%B8%AD%E6%96%87%2F%E6%95%B4%E5%90%881.0.4%E6%95%B0%E4%BD%8D%E8%B1%AA%E5%8D%8E%E7%89%88%2B%E5%85%A8DLC%2B%E7%89%B9%E5%85%B8%E8%8E%B1%E8%8E%8E&amp;picpic1_0=http%3A%2F%2Fimgs.ali213.net%2Foday%2Fuploadfile%2F2021%2F10%2F28%2F202110289310331.jpg&amp;P_price=1.00&amp;P_vip=1&amp;P_price3=0.00&amp;P_limit=0.00&amp;P_limitlong=0&amp;P_limittime=2021-12-22+13%3A33%3A58&amp;P_sort=26&amp;P_view=105&amp;P_time=2021-12-10+00%3A00%3A00&amp;P_sold=0&amp;P_order=0&amp;P_sh=1&amp;P_selltype=0&amp;P_sell%5B%5D=%E7%99%BE%E5%BA%A6%EF%BC%9Ahttps%3A%2F%2Fpan.baidu.com%2Fs%2F1aRaVjL94QJ9s4BQ2Ctvl3A%0D%0A%E6%8F%90%E5%8F%96%E7%A0%81%EF%BC%9Ak5hk%0D%0A%E8%A7%A3%E5%8E%8B%E7%A0%81%2F%E5%AE%89%E8%A3%85%E7%A0%81+417768%0D%0A&amp;P_sell%5B%5D=0&amp;P_rest=100&amp;name=name&amp;mobile=mobile&amp;address=address&amp;P_keywords=&amp;P_description=&amp;P_code=&amp;P_unlogin=0&amp;P_fx=1&amp;P_taobao=&amp;P_video=&amp;P_vshow=0&amp;P_tag=&amp;P_shuxing=&amp;msgmsg1_0=%E7%94%B5%E5%AD%90%E9%82%AE%E7%AE%B1&amp;msgmsg2_0=&amp;msgmsg3_0=text&amp;msgmsg4_0=0&amp;msgmsg1_1=%E7%BB%99%E5%8D%96%E5%AE%B6%E7%95%99%E8%A8%80&amp;msgmsg2_1=&amp;msgmsg3_1=textarea&amp;msgmsg4_1=0&amp;P_bz=&amp;P_content=%E4%B8%AD%E6%96%87%E8%AE%BE%E7%BD%AE%EF%BC%9A%3Cbr+%2F%3E%0D%0A%E6%89%93%E5%BC%80%E6%B8%B8%E6%88%8F%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B+%E7%94%A8%E8%AE%B0%E4%BA%8B%E6%9C%AC%E6%89%93%E5%BC%80steam_emu.ini%3Cbr+%2F%3E%0D%0A%E6%89%BE%E5%88%B0Language%3Denglish%3Cbr+%2F%3E%0D%0A%E6%94%B9%E4%B8%BALanguage%3DSChinese%3Cbr+%2F%3E%0D%0A%3Cbr+%2F%3E%0D%0A%E8%BF%9B%E5%85%A5%E6%B8%B8%E6%88%8F%E8%AE%BE%E7%BD%AE%E9%87%8C%E9%9D%A2%E5%B0%B1%E6%9C%89+%E4%B8%AD%E6%96%87%3Cbr+%2F%3E&amp;</string>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zn0-OK-tYJ">
+                    <rect key="frame" x="20" y="113" width="62" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="开始转换"/>
+                    <connections>
+                        <action selector="startButton:" destination="-1" eventType="touchUpInside" id="cAp-N8-AFr"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择转换的方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yq-FW-gwX">
+                    <rect key="frame" x="103" y="118" width="304" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Erh-hR-Z45">
+                    <rect key="frame" x="408" y="236" width="372" height="344"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XhV-kG-gLb">
+                    <rect key="frame" x="20" y="152" width="237" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="url编码"/>
+                        <segment title="字典"/>
+                    </segments>
+                </segmentedControl>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-pN-v1R">
+                    <rect key="frame" x="20" y="191" width="237" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <segments>
+                        <segment title="form"/>
+                        <segment title="json"/>
+                    </segments>
+                </segmentedControl>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemGray5Color"/>
+            <point key="canvasLocation" x="141.75" y="75"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

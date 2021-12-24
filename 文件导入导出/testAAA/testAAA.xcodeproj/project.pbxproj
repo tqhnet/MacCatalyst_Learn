@@ -16,6 +16,9 @@
 		482AA47526EB3F68007BEC88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 482AA47426EB3F68007BEC88 /* Assets.xcassets */; };
 		482AA47826EB3F68007BEC88 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 482AA47626EB3F68007BEC88 /* LaunchScreen.storyboard */; };
 		482AA47B26EB3F68007BEC88 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 482AA47A26EB3F68007BEC88 /* main.m */; };
+		482FAD87275F599500DCC046 /* PDFConverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 482FAD85275F599500DCC046 /* PDFConverController.m */; };
+		482FAD88275F599500DCC046 /* PDFConverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 482FAD86275F599500DCC046 /* PDFConverController.xib */; };
+		482FAD8B275F5A0700DCC046 /* test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 482FAD8A275F5A0700DCC046 /* test.pdf */; };
 		48342014271A74BB00A2A860 /* WJRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 48342013271A74BB00A2A860 /* WJRouter.m */; };
 		48342018271A75A900A2A860 /* WJRouterAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 48342017271A75A900A2A860 /* WJRouterAPI.m */; };
 		483AF7D4272110D5007DE5C0 /* WebParseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 483AF7D3272110D5007DE5C0 /* WebParseViewModel.m */; };
@@ -42,6 +45,8 @@
 		48788AC126F5B92F006FD072 /* FileListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 48788AC026F5B92F006FD072 /* FileListCell.m */; };
 		48788AC526F5B957006FD072 /* FileListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 48788AC426F5B957006FD072 /* FileListModel.m */; };
 		48788ACB26F5C193006FD072 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48788ACA26F5C193006FD072 /* MainTableViewController.m */; };
+		4885C28B2775AA2D00D98951 /* ChangeTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4885C2892775AA2D00D98951 /* ChangeTextController.m */; };
+		4885C28C2775AA2D00D98951 /* ChangeTextController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4885C28A2775AA2D00D98951 /* ChangeTextController.xib */; };
 		4899FBE8270591EB006F7F2E /* FileGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4899FBE6270591EB006F7F2E /* FileGroupController.m */; };
 		4899FBE9270591EB006F7F2E /* FileGroupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4899FBE7270591EB006F7F2E /* FileGroupController.xib */; };
 		4899FC1A2705AF61006F7F2E /* WebParseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4899FC182705AF61006F7F2E /* WebParseController.m */; };
@@ -79,6 +84,10 @@
 		482AA47926EB3F68007BEC88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		482AA47A26EB3F68007BEC88 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		482AA48226EB3F89007BEC88 /* testAAA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testAAA.entitlements; sourceTree = "<group>"; };
+		482FAD84275F599500DCC046 /* PDFConverController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFConverController.h; sourceTree = "<group>"; };
+		482FAD85275F599500DCC046 /* PDFConverController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFConverController.m; sourceTree = "<group>"; };
+		482FAD86275F599500DCC046 /* PDFConverController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PDFConverController.xib; sourceTree = "<group>"; };
+		482FAD8A275F5A0700DCC046 /* test.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = test.pdf; sourceTree = "<group>"; };
 		48342012271A74BB00A2A860 /* WJRouter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJRouter.h; sourceTree = "<group>"; };
 		48342013271A74BB00A2A860 /* WJRouter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WJRouter.m; sourceTree = "<group>"; };
 		48342016271A75A900A2A860 /* WJRouterAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WJRouterAPI.h; sourceTree = "<group>"; };
@@ -123,6 +132,9 @@
 		48788AC426F5B957006FD072 /* FileListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileListModel.m; sourceTree = "<group>"; };
 		48788AC926F5C193006FD072 /* MainTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		48788ACA26F5C193006FD072 /* MainTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
+		4885C2882775AA2D00D98951 /* ChangeTextController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeTextController.h; sourceTree = "<group>"; };
+		4885C2892775AA2D00D98951 /* ChangeTextController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeTextController.m; sourceTree = "<group>"; };
+		4885C28A2775AA2D00D98951 /* ChangeTextController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeTextController.xib; sourceTree = "<group>"; };
 		4899FBE5270591EB006F7F2E /* FileGroupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileGroupController.h; sourceTree = "<group>"; };
 		4899FBE6270591EB006F7F2E /* FileGroupController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileGroupController.m; sourceTree = "<group>"; };
 		4899FBE7270591EB006F7F2E /* FileGroupController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileGroupController.xib; sourceTree = "<group>"; };
@@ -218,6 +230,8 @@
 		482AA46726EB3F65007BEC88 /* testAAA */ = {
 			isa = PBXGroup;
 			children = (
+				4885C27F2775A63200D98951 /* ChangeText */,
+				482FAD83275F592200DCC046 /* PDF */,
 				4899FC112705AEE6006F7F2E /* WebParse */,
 				4899FBE4270590FB006F7F2E /* FileGroup */,
 				48B660DA26F715FF002A8537 /* DownImage */,
@@ -242,6 +256,17 @@
 				482AA47A26EB3F68007BEC88 /* main.m */,
 			);
 			path = testAAA;
+			sourceTree = "<group>";
+		};
+		482FAD83275F592200DCC046 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				482FAD8A275F5A0700DCC046 /* test.pdf */,
+				482FAD84275F599500DCC046 /* PDFConverController.h */,
+				482FAD85275F599500DCC046 /* PDFConverController.m */,
+				482FAD86275F599500DCC046 /* PDFConverController.xib */,
+			);
+			path = PDF;
 			sourceTree = "<group>";
 		};
 		483D78D72716D42300431488 /* Tool */ = {
@@ -298,6 +323,16 @@
 				48788ABB26F593DD006FD072 /* FileListController.xib */,
 			);
 			path = FileList;
+			sourceTree = "<group>";
+		};
+		4885C27F2775A63200D98951 /* ChangeText */ = {
+			isa = PBXGroup;
+			children = (
+				4885C2882775AA2D00D98951 /* ChangeTextController.h */,
+				4885C2892775AA2D00D98951 /* ChangeTextController.m */,
+				4885C28A2775AA2D00D98951 /* ChangeTextController.xib */,
+			);
+			path = ChangeText;
 			sourceTree = "<group>";
 		};
 		4899FBE4270590FB006F7F2E /* FileGroup */ = {
@@ -425,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4885C28C2775AA2D00D98951 /* ChangeTextController.xib in Resources */,
 				48582466272006A600D89C1E /* JStoOC.html in Resources */,
 				48582461272006A600D89C1E /* backbutton@3x.png in Resources */,
 				48E1C73127153FEB00C24E0C /* Close@3x.png in Resources */,
@@ -439,6 +475,7 @@
 				48B660DF26F718CB002A8537 /* DownImageController.xib in Resources */,
 				48582463272006A600D89C1E /* webRefreshButton@2x.png in Resources */,
 				48582462272006A600D89C1E /* backbutton@2x.png in Resources */,
+				482FAD88275F599500DCC046 /* PDFConverController.xib in Resources */,
 				48E1C72F27153FEB00C24E0C /* b.png in Resources */,
 				4899FC1B2705AF61006F7F2E /* WebParseController.xib in Resources */,
 				48582465272006A600D89C1E /* webRefreshButton@3x.png in Resources */,
@@ -446,6 +483,7 @@
 				48E1C72D27153FEA00C24E0C /* Enlarge@3x.png in Resources */,
 				48582464272006A600D89C1E /* girl.png in Resources */,
 				483D78E52716DA7500431488 /* WJEditImageInfoController.xib in Resources */,
+				482FAD8B275F5A0700DCC046 /* test.pdf in Resources */,
 				48E1C72B27153FEA00C24E0C /* Enlarge@2x.png in Resources */,
 				48E1C72E27153FEA00C24E0C /* Close.png in Resources */,
 				48788ABD26F593DD006FD072 /* FileListController.xib in Resources */,
@@ -503,6 +541,7 @@
 			files = (
 				485824582720069D00D89C1E /* SLWebViewController.m in Sources */,
 				48788ACB26F5C193006FD072 /* MainTableViewController.m in Sources */,
+				482FAD87275F599500DCC046 /* PDFConverController.m in Sources */,
 				483D78CF2716C89C00431488 /* WJEditImageListController.m in Sources */,
 				484A988C26F0720400AA79D7 /* WJSpiderManager.m in Sources */,
 				483D78AC2716AA0C00431488 /* WJExtImageFileCell.m in Sources */,
@@ -514,6 +553,7 @@
 				48788AC526F5B957006FD072 /* FileListModel.m in Sources */,
 				484A989026F079DD00AA79D7 /* UIImage+WJExt.m in Sources */,
 				48E1C71C27153EB700C24E0C /* WJCanvasItemView.m in Sources */,
+				4885C28B2775AA2D00D98951 /* ChangeTextController.m in Sources */,
 				482AA46A26EB3F65007BEC88 /* AppDelegate.m in Sources */,
 				48342018271A75A900A2A860 /* WJRouterAPI.m in Sources */,
 				483AF7D827211B52007DE5C0 /* WJPathManager.m in Sources */,

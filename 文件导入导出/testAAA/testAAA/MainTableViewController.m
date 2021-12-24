@@ -12,7 +12,8 @@
 #import "WebParseController.h"
 #import "WJRouter.h"
 #import "WJSpiderViewController.h"
-
+#import "PDFConverController.h"
+#import "ChangeTextController.h"
 
 @interface MainTableViewController ()<UITableViewDataSource,UITableViewDelegate,UIDocumentPickerDelegate>
 
@@ -33,7 +34,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.dataArray addObjectsFromArray:@[@"导入文件",@"查看目录",@"文字图片合成",@"批量下载图片和数据格式转换",@"将文件分组",@"网页解析",@"爬虫测试"]];
+    [self.dataArray addObjectsFromArray:@[@"文字转换",@"导入文件",@"查看目录",@"文字图片合成",@"批量下载图片和数据格式转换",@"将文件分组",@"网页解析",@"爬虫测试",@"PDF转换"]];
     [self.view addSubview:self.tableView];
 }
 
@@ -100,6 +101,12 @@
     }else if([string isEqualToString:@"爬虫测试"]){
         //WJSpiderViewController
         WJSpiderViewController *vc = [[WJSpiderViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([string isEqualToString:@"PDF转换"]){
+        PDFConverController *vc = [[PDFConverController alloc]initWithNibName:@"PDFConverController" bundle:[NSBundle mainBundle]];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if([string isEqualToString:@"文字转换"]){
+        ChangeTextController *vc = [[ChangeTextController alloc]initWithNibName:@"ChangeTextController" bundle:[NSBundle mainBundle]];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
